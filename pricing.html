@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Pricing | Glamora — Premium Salon &amp; Beauty Parlour</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+   <link rel="icon" href="assests/fav.png" type="image/jpeg">
+    <meta name="description"
+        content="Glamora pricing — transparent rates for hair services, skin care, makeup, bridal packages, and exclusive beauty offers. No hidden fees.">
+
+    <!-- Tailwind CSS CDN -->
+      <script src="tailwind.js"></script>
+
+    <!-- Font Awesome + Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'salon-rose': '#C9737E',
+                        'salon-plum': '#4A2545',
+                        'salon-cream': '#FBF7F2',
+                        'salon-blush': '#F5E1DE',
+                        'salon-gold': '#C9A227',
+                        'salon-charcoal': '#2B2226',
+                        'salon-sage': '#8FA88F',
+                        'dark-gray': '#111111',
+                        'warm-gray': '#FDF9F2'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Jost"', 'sans-serif'],
+                    },
+                    letterSpacing: { 'widest-xl': '0.3em' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        [dir="rtl"] { direction: rtl; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeInUp 1.2s ease-out forwards; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.02); }
+        }
+        .animate-float { animation: float 8s ease-in-out infinite; }
+
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { overflow-x: hidden; }
+
+        #mobile-menu {
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
+            transition: all 0.3s ease;
+            transform: translateZ(0);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .mobile-dropdown-icon { transition: transform 0.3s ease; }
+        .mobile-dropdown-icon.rotate { transform: rotate(180deg); }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .bg-grain {
+            background-image: radial-gradient(rgba(74, 37, 69, 0.03) 1.5px, transparent 1.5px);
+            background-size: 28px 28px;
+        }
+
+        /* Dark mode overrides */
+        .dark .dark\:text-white { color: #ffffff !important; }
+        .dark .dark\:text-gray-200 { color: #e5e5e5 !important; }
+        .dark .dark\:text-gray-300 { color: #d1d1d1 !important; }
+        .dark .dark\:text-gray-400 { color: #a3a3a3 !important; }
+        .dark p, .dark li, .dark span:not(.text-salon-gold):not(.text-salon-rose):not(.text-salon-sage), .dark .text-gray-600 { color: #cbd5e1 !important; }
+        .dark h1, .dark h2, .dark h3, .dark h4, .dark .font-serif { color: #ffffff !important; }
+        .dark .bg-white\/80, .dark .bg-white\/95 { background-color: #0a0a0a !important; }
+        .dark .border-gray-200 { border-color: rgba(255, 255, 255, 0.1) !important; }
+        .dark .bg-gray-50 { background-color: #1a1a1a !important; }
+        .dark .hover\:bg-gray-100:hover { background-color: #2a2a2a !important; }
+        .dark .text-dark-gray { color: #ffffff !important; }
+        .dark .bg-warm-gray { background-color: #0a0a0a !important; }
+        .dark .bg-white { background-color: #0f0f0f !important; }
+
+        @media (max-width: 1280px) { .nav-menu-container { display: none; } }
+        body.menu-open { overflow: hidden; position: fixed; width: 100%; height: 100%; }
+        button:active { transform: scale(0.97); }
+
+        /* Patterns */
+        .pattern-dots {
+            background-image: radial-gradient(#C9737E 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.08;
+        }
+        .pattern-grid {
+            background-image:
+                linear-gradient(rgba(201, 115, 126, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201, 115, 126, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .salon-glow {
+            box-shadow: 0 0 40px rgba(201, 115, 126, 0.15), 0 0 80px rgba(201, 115, 126, 0.05);
+        }
+        .dark .salon-glow {
+            box-shadow: 0 0 40px rgba(201, 115, 126, 0.25), 0 0 80px rgba(201, 115, 126, 0.1);
+        }
+
+        @keyframes float-badge {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+        .float-badge { animation: float-badge 6s ease-in-out infinite; }
+        .float-badge-delay { animation: float-badge 6s ease-in-out 2s infinite; }
+
+        /* Price Row */
+        .price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1.15rem 0;
+            border-bottom: 1px dashed rgba(201, 115, 126, 0.2);
+            transition: all 0.3s ease;
+        }
+        .price-row:last-child { border-bottom: none; }
+        .price-row:hover {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+            background: rgba(201, 115, 126, 0.04);
+            border-radius: 0.75rem;
+        }
+        .dark .price-row { border-bottom-color: rgba(201, 115, 126, 0.15); }
+        .dark .price-row:hover { background: rgba(201, 115, 126, 0.08); }
+
+        .price-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: #2B2226;
+            margin-bottom: 0.15rem;
+        }
+        .dark .price-name { color: #F5EFE4; }
+
+        .price-desc {
+            font-size: 0.78rem;
+            color: #78716C;
+            line-height: 1.4;
+        }
+        .dark .price-desc { color: #A8A29E; }
+
+        .price-amount {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #C9737E;
+            white-space: nowrap;
+        }
+        .price-amount .currency {
+            font-size: 0.95rem;
+            margin-right: 0.1rem;
+        }
+
+        /* Pricing tab */
+        .pricing-tab {
+            padding: 0.6rem 1.4rem;
+            border-radius: 9999px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            border: 1px solid rgba(201, 115, 126, 0.2);
+            background: transparent;
+            color: #78716C;
+        }
+        .pricing-tab:hover {
+            border-color: #C9737E;
+            color: #C9737E;
+        }
+        .pricing-tab.active {
+            background: linear-gradient(135deg, #C9737E, #4A2545);
+            border-color: transparent;
+            color: #ffffff;
+            box-shadow: 0 8px 20px -6px rgba(201, 115, 126, 0.5);
+        }
+        .dark .pricing-tab {
+            color: #A8A29E;
+            border-color: rgba(201, 115, 126, 0.3);
+        }
+
+        /* Package card */
+        .package-card {
+            background: var(--package-bg, #ffffff);
+            border-radius: 2rem;
+            border: 1px solid rgba(201, 115, 126, 0.12);
+            padding: 2.5rem 2rem;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .dark .package-card {
+            background: #0f0f0f;
+            border-color: rgba(201, 115, 126, 0.2);
+        }
+        .package-card:hover {
+            transform: translateY(-10px);
+            border-color: #C9737E;
+            box-shadow: 0 30px 60px -20px rgba(201, 115, 126, 0.35);
+        }
+        .package-card.featured {
+            background: linear-gradient(160deg, #4A2545 0%, #2B2226 100%);
+            border-color: #C9737E;
+            transform: scale(1.02);
+        }
+        .package-card.featured:hover {
+            transform: scale(1.02) translateY(-10px);
+        }
+
+        .package-check {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            font-size: 0.88rem;
+            color: #78716C;
+        }
+        .dark .package-check { color: #A8A29E; }
+        .package-card.featured .package-check { color: #E0C8CC; }
+
+        /* Offer card */
+        .offer-card {
+            position: relative;
+            border-radius: 1.75rem;
+            overflow: hidden;
+            background: var(--offer-bg, #FBF7F2);
+            border: 1px solid rgba(201, 115, 126, 0.15);
+            padding: 1.75rem;
+            transition: all 0.4s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .dark .offer-card {
+            background: #0f0f0f;
+            border-color: rgba(201, 115, 126, 0.25);
+        }
+        .offer-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -15px rgba(201, 115, 126, 0.35);
+        }
+
+        /* Scrollbar hide */
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+
+<body
+    class="font-sans text-gray-800 antialiased transition-colors duration-300 bg-warm-gray dark:bg-dark-gray dark:text-gray-100 bg-grain">
+
+    <!-- HEADER -->
+    <nav
+        class="bg-white/95 dark:bg-[#0a0a0a]/95 backdrop-blur-xl fixed w-full top-0 z-50 border-b border-gray-200/50 dark:border-white/10 transition-all duration-500 shadow-lg">
+        <div class="max-w-[1200px] mx-auto nav-container px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="flex items-center gap-3 group">
+                        <div class="flex flex-col">
+                            <span class="text-2xl md:text-3xl font-serif font-bold text-salon-rose tracking-wide transition-colors"><span class="italic">Glamora</span></span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden xl:flex items-center justify-center flex-1 nav-menu-container mx-4">
+                    <div
+                        class="flex items-center gap-1 lg:gap-1 bg-gray-50/50 dark:bg-white/5 p-1.5 rounded-full border border-gray-100 dark:border-white/5">
+                        <div class="relative group">
+                            <button
+                                class="text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium transition px-3 py-2 rounded-full flex items-center gap-1 hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">
+                                <span>Home</span>
+                                <i class="fas fa-chevron-down text-[8px] ms-0.5"></i>
+                            </button>
+                            <div
+                                class="absolute start-0 mt-3 w-40 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-white/10 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                                <a href="index.html"
+                                    class="block px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest transition">Home 1</a>
+                                <a href="home2.html"
+                                    class="block px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest transition">Home 2</a>
+                            </div>
+                        </div>
+                        <a href="about.html"
+                            class="nav-link text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium px-3 py-2 rounded-full hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">About</a>
+                        <a href="services.html"
+                            class="nav-link text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium px-3 py-2 rounded-full hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">Services</a>
+                        <a href="gallery.html"
+                            class="nav-link text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium px-3 py-2 rounded-full hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">Gallery</a>
+                        <a href="hair.html"
+                            class="nav-link text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium px-3 py-2 rounded-full hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">Hair</a>
+                        <a href="pricing.html"
+                            class="nav-link bg-white dark:bg-[#1a1a1a] shadow-sm text-salon-rose dark:text-salon-rose font-bold transition px-3 py-2 rounded-full text-[10px] uppercase tracking-widest">Pricing</a>
+                        <a href="skin-care.html"
+                            class="nav-link text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium px-3 py-2 rounded-full hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">Skin Care</a>
+                        <a href="contact.html"
+                            class="nav-link text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium px-3 py-2 rounded-full hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">Contact</a>
+                    </div>
+                </div>
+
+                <div class="hidden xl:flex items-center gap-2">
+                    <button id="rtl-toggle" class="w-9 h-9 md:w-10 md:h-10 rounded-full border border-gray-200 dark:border-white/10 flex items-center justify-center hover:border-salon-rose transition-all"><span class="text-[9px] font-black text-dark-gray dark:text-white">RTL</span></button>
+                    <button id="theme-toggle" class="w-9 h-9 md:w-10 md:h-10 rounded-full border border-gray-200 dark:border-white/10 flex items-center justify-center hover:border-salon-rose transition-all"><i class="fas fa-moon dark:hidden text-xs text-dark-gray dark:text-white"></i><i class="fas fa-sun hidden dark:inline text-xs text-dark-gray dark:text-white"></i></button>
+                    <a href="contact.html#enquiry"
+                        class="bg-salon-rose hover:bg-salon-plum text-white px-5 py-2.5 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-lg hover:-translate-y-0.5 transition duration-300">Book
+                        Now</a>
+                </div>
+
+                <div class="xl:hidden flex items-center gap-2">
+                    <button id="mobile-menu-button"
+                        class="text-dark-gray dark:text-white p-2 focus:outline-none active:scale-95 transition hover:text-salon-rose">
+                        <i id="menu-icon" class="fas fa-bars text-lg"></i>
+                        <i id="close-icon" class="fas fa-times text-lg hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden xl:hidden bg-white dark:bg-[#0a0a0a] border-t border-gray-200 dark:border-white/10 absolute w-full shadow-2xl z-50"
+            style="top: 64px;">
+            <div class="px-5 py-5 pb-8 space-y-1 max-h-[calc(100vh-64px)] overflow-y-auto">
+                <div class="w-full">
+                    <button id="mobile-home-dropdown-btn"
+                        class="w-full flex justify-between items-center px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">
+                        <span>Home</span>
+                        <i id="mobile-home-icon"
+                            class="fas fa-chevron-down text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="mobile-home-submenu"
+                        class="hidden pl-4 space-y-1 mt-1 bg-gray-50/50 dark:bg-white/5 rounded-xl py-2">
+                        <a href="index.html"
+                            class="block px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest transition">Home 1</a>
+                        <a href="home2.html"
+                            class="block px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest transition">Home 2</a>
+                    </div>
+                </div>
+                <a href="about.html"
+                    class="block px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">About</a>
+                <a href="services.html"
+                    class="block px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">Services</a>
+                <a href="gallery.html"
+                    class="block px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">Gallery</a>
+                <a href="hair.html"
+                    class="block px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">Hair</a>
+                <a href="pricing.html"
+                    class="block px-4 py-3.5 text-salon-rose bg-gray-50 dark:bg-white/5 rounded-xl text-sm font-bold uppercase transition">Pricing</a>
+                <a href="skin-care.html"
+                    class="block px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">Skin Care</a>
+                <a href="contact.html"
+                    class="block px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">Contact</a>
+
+                <div class="pt-5 mt-5 border-t border-gray-200 dark:border-white/10">
+                    <div class="flex items-center justify-between gap-4 mb-4">
+                        <button id="mobile-rtl-toggle" class="flex-1 py-3 rounded-xl border border-gray-200 dark:border-white/10 flex items-center justify-center hover:border-salon-rose transition-all">
+                            <span class="text-[10px] font-black text-dark-gray dark:text-white">RTL MODE</span>
+                        </button>
+                        <button id="mobile-theme-toggle" class="flex-1 py-3 rounded-xl border border-gray-200 dark:border-white/10 flex items-center justify-center hover:border-salon-rose transition-all">
+                            <span class="text-[10px] font-black text-dark-gray dark:text-white mr-2">THEME</span>
+                            <i class="fas fa-moon dark:hidden text-xs text-dark-gray dark:text-white"></i>
+                            <i class="fas fa-sun hidden dark:inline text-xs text-dark-gray dark:text-white"></i>
+                        </button>
+                    </div>
+                    <a href="contact.html#enquiry"
+                        class="block mt-4 bg-salon-rose text-white text-center px-4 py-4 rounded-xl text-sm font-black uppercase tracking-widest shadow-lg hover:bg-salon-plum transition">Book
+                        Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================ SECTION 1: HERO ============================ -->
+    <section class="relative min-h-[95vh] flex items-center py-28 lg:py-36 overflow-hidden bg-white dark:bg-dark-gray">
+        <div class="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-salon-rose/5 to-transparent pointer-events-none"></div>
+        <div class="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-salon-plum/5 rounded-full blur-[100px] pointer-events-none dark:bg-salon-rose/5"></div>
+        <div class="absolute top-1/3 right-1/4 w-72 h-72 bg-salon-rose/5 rounded-full blur-3xl pointer-events-none float-badge"></div>
+        <div class="absolute bottom-1/4 left-1/3 w-56 h-56 bg-salon-plum/5 rounded-full blur-3xl pointer-events-none float-badge-delay"></div>
+
+        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                <div class="flex-1 text-left animate-fade-in opacity-0" style="animation-delay: 0.2s;">
+                    <span class="text-salon-rose text-[10px] sm:text-xs uppercase tracking-[0.3em] font-bold mb-6 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-salon-rose animate-pulse inline-block"></span> TRANSPARENT PRICING · NO HIDDEN FEES
+                    </span>
+                    <h1 class="text-5xl sm:text-6xl md:text-7xl font-sans font-black text-dark-gray dark:text-white leading-[1.1] mb-8 tracking-tight">
+                        Beauty That <br>
+                        Fits Your <span class="font-serif italic font-light text-salon-rose">Budget</span>
+                    </h1>
+                    <p class="text-gray-600 dark:text-gray-300 max-w-lg text-base md:text-lg font-light mb-10 leading-relaxed">
+                        Clear, upfront pricing for every service — from precision cuts and colour to radiant skincare, flawless makeup, and luxury bridal packages. No surprises, no hidden upsells, just immaculate artistry.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="contact.html#enquiry"
+                            class="bg-salon-rose hover:bg-salon-plum text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest font-bold shadow-xl transition-all duration-300 hover:-translate-y-1">
+                            Book Appointment
+                        </a>
+                        <a href="#hair"
+                            class="border border-gray-300 dark:border-white/20 hover:border-salon-rose hover:text-salon-rose text-dark-gray dark:text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest font-bold transition-all duration-300">
+                            Explore Pricing
+                        </a>
+                    </div>
+
+                    <!-- Trust indicators -->
+                    <div class="flex flex-wrap items-center gap-6 mt-12 text-gray-500 dark:text-gray-400">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-salon-rose text-sm"></i>
+                            <span class="text-[10px] uppercase tracking-widest font-bold">No Hidden Fees</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-award text-salon-rose text-sm"></i>
+                            <span class="text-[10px] uppercase tracking-widest font-bold">15+ Years Experience</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-star text-salon-rose text-sm"></i>
+                            <span class="text-[10px] uppercase tracking-widest font-bold">4.9 Client Rating</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right side: Luxury Hero Card matching index.html -->
+                <div class="flex-1 relative animate-fade-in opacity-0" style="animation-delay: 0.4s;">
+                    <div class="relative group">
+                        <div class="absolute -inset-6 bg-salon-rose/15 rounded-[3rem] blur-3xl group-hover:bg-salon-rose/25 transition duration-700"></div>
+                        <div class="relative flex items-center justify-center">
+                            <div class="relative rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100 dark:border-white/10 aspect-square w-full max-w-md salon-glow">
+                                <img src="assests/pricing-hero.jpg" alt="Pricing &amp; Consultation at Glamora"
+                                    class="w-full h-full object-cover transform group-hover:scale-105 transition duration-1000">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================ SECTION 2: HAIR SERVICE PRICES ============================ -->
+    <section id="hair" class="py-24 lg:py-32 bg-warm-gray dark:bg-[#050505] relative overflow-hidden">
+        <div class="absolute inset-0 pattern-dots pointer-events-none"></div>
+
+        <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 mb-4 text-salon-rose text-[10px] uppercase tracking-[0.4em] font-bold">
+                    <span class="w-8 h-px bg-salon-rose"></span>
+                    Price List 01
+                    <span class="w-8 h-px bg-salon-rose"></span>
+                </div>
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-dark-gray dark:text-white mb-6">
+                    Hair Service <span class="italic font-light text-salon-rose">Prices</span>
+                </h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-base md:text-lg">
+                    From a simple trim to a full colour transformation — professional hair care at honest prices.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Cut & Style -->
+                <div class="bg-white dark:bg-[#0f0f0f] rounded-3xl p-6 md:p-8 shadow-xl border border-gray-100 dark:border-white/5">
+                    <div class="flex items-center gap-3 mb-6 pb-5 border-b border-salon-rose/10 dark:border-salon-rose/20">
+                        <div class="w-12 h-12 rounded-xl bg-salon-rose/10 flex items-center justify-center shrink-0">
+                            <i class="fas fa-cut text-salon-rose text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serif font-bold text-xl text-dark-gray dark:text-white">Cut &amp; Style</h3>
+                            <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Precision &amp; finish</p>
+                        </div>
+                    </div>
+
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">Women's Haircut</div>
+                            <div class="price-desc">Wash, cut, blow-dry &amp; style</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>55</div>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">Men's Haircut</div>
+                            <div class="price-desc">Cut, wash &amp; finish</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>35</div>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">Kids Haircut (under 12)</div>
+                            <div class="price-desc">Gentle &amp; patient styling</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>25</div>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">Blow-Dry &amp; Styling</div>
+                            <div class="price-desc">Volume, waves or sleek finish</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>40</div>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">Bridal Updo</div>
+                            <div class="price-desc">Formal styling for special events</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>120</div>
+                    </div>
+                </div>
+
+                <!-- Colour & Treatment -->
+                <div class="bg-white dark:bg-[#0f0f0f] rounded-3xl p-6 md:p-8 shadow-xl border border-gray-100 dark:border-white/5">
+                    <div class="flex items-center gap-3 mb-6 pb-5 border-b border-salon-rose/10 dark:border-salon-rose/20">
+                        <div class="w-12 h-12 rounded-xl bg-salon-plum/10 flex items-center justify-center shrink-0">
+                            <i class="fas fa-palette text-salon-plum dark:text-salon-rose text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serif font-bold text-xl text-dark-gray dark:text-white">Colour &amp; Treatment</h3>
+                            <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Colour &amp; care</p>
+                        </div>
+                    </div>
+
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">Root Touch-Up</div>
+                            <div class="price-desc">Single colour regrowth</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>65</div>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">Full Head Colour</div>
+                            <div class="price-desc">Global single tone application</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>110</div>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">Balayage / Ombre</div>
+                            <div class="price-desc">Hand-painted dimensional colour</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>180</div>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">Keratin Smoothening</div>
+                            <div class="price-desc">Frizz-free smoothing treatment</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>200</div>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">Hair Spa &amp; Deep Conditioning</div>
+                            <div class="price-desc">60-min nourishing ritual</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>75</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Note -->
+            <p class="text-center text-xs text-gray-500 dark:text-gray-400 mt-8 italic">
+                <i class="fas fa-info-circle text-salon-rose mr-1"></i>
+                Prices may vary based on hair length, thickness, and product used. Final quote confirmed at consultation.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================ SECTION 3: SKIN CARE PRICES ============================ -->
+    <section class="py-24 lg:py-32 bg-white dark:bg-dark-gray relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-salon-rose/5 rounded-full blur-[130px] pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-salon-plum/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 mb-4 text-salon-rose text-[10px] uppercase tracking-[0.4em] font-bold">
+                    <span class="w-8 h-px bg-salon-rose"></span>
+                    Price List 02
+                    <span class="w-8 h-px bg-salon-rose"></span>
+                </div>
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-dark-gray dark:text-white mb-6">
+                    Skin Care <span class="italic font-light text-salon-rose">Prices</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-salon-rose to-transparent mx-auto mb-6"></div>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-base md:text-lg">
+                    Clinical facials, precision threading &amp; botanical body rituals — pure biocompatible formulas for skin that glows from within.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Facials & Skin -->
+                <div class="bg-warm-gray dark:bg-[#0f0f0f] rounded-3xl p-6 md:p-8 shadow-xl border border-gray-100 dark:border-white/5 hover:border-salon-rose/30 transition-all duration-300">
+                    <div class="flex items-center gap-3 mb-6 pb-5 border-b border-salon-rose/10 dark:border-salon-rose/20">
+                        <div class="w-12 h-12 rounded-xl bg-salon-rose/10 flex items-center justify-center shrink-0">
+                            <i class="fas fa-spa text-salon-rose text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serif font-bold text-xl text-dark-gray dark:text-white">Facials &amp; Skin Rituals</h3>
+                            <p class="text-[10px] uppercase tracking-widest text-salon-rose font-bold">Glow · Hydrate · Renew</p>
+                        </div>
+                    </div>
+
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">Express Glow Facial</div>
+                            <div class="price-desc">30-min deep cleanse &amp; cellular refresh</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>45</div>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">Signature Hydra-Facial</div>
+                            <div class="price-desc">Vortex hydration, peptides &amp; LED therapy</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>95</div>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">Anti-Aging Cellular Facial</div>
+                            <div class="price-desc">Collagen matrix boost &amp; microcurrent lifting</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>130</div>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">Acne Clarifying Treatment</div>
+                            <div class="price-desc">Salicylic purification &amp; botanical calming mask</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>85</div>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">De-Tan &amp; Radiance Peel</div>
+                            <div class="price-desc">Even tone, antioxidant serum &amp; glass finish</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>70</div>
+                    </div>
+                </div>
+
+                <!-- Threading, Waxing, Body -->
+                <div class="bg-warm-gray dark:bg-[#0f0f0f] rounded-3xl p-6 md:p-8 shadow-xl border border-gray-100 dark:border-white/5 hover:border-salon-rose/30 transition-all duration-300">
+                    <div class="flex items-center gap-3 mb-6 pb-5 border-b border-salon-rose/10 dark:border-salon-rose/20">
+                        <div class="w-12 h-12 rounded-xl bg-salon-plum/10 dark:bg-salon-rose/10 flex items-center justify-center shrink-0">
+                            <i class="fas fa-feather text-salon-plum dark:text-salon-rose text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serif font-bold text-xl text-dark-gray dark:text-white">Threading · Waxing · Body</h3>
+                            <p class="text-[10px] uppercase tracking-widest text-salon-rose font-bold">Silk Smooth &amp; Polished</p>
+                        </div>
+                    </div>
+
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">Eyebrow Threading</div>
+                            <div class="price-desc">Precision micro-shaping &amp; contour cleanup</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>12</div>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">Full Face Threading</div>
+                            <div class="price-desc">Brows, upper lip, chin &amp; soothing aloe gel</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>28</div>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">Full Arms Waxing</div>
+                            <div class="price-desc">Hypoallergenic warm botanical wax</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>35</div>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">Full Legs Waxing</div>
+                            <div class="price-desc">Silky smooth from thigh to ankle</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>55</div>
+                    </div>
+                    <div class="price-row">
+                        <div>
+                            <div class="price-name">Full Body Polish &amp; Glow</div>
+                            <div class="price-desc">Walnut exfoliation, lymphatic hydration &amp; oils</div>
+                        </div>
+                        <div class="price-amount"><span class="currency">$</span>120</div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-center text-xs text-gray-500 dark:text-gray-400 mt-8 italic">
+                <i class="fas fa-info-circle text-salon-rose mr-1"></i>
+                Combination packages available at a discount — ask your esthetician for details.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================ SECTION 4: MAKEUP PRICES ============================ -->
+    <section class="py-24 lg:py-32 bg-warm-gray dark:bg-[#050505] relative overflow-hidden">
+        <div class="absolute inset-0 pattern-grid opacity-60 dark:opacity-20 pointer-events-none"></div>
+
+        <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 mb-4 text-salon-rose text-[10px] uppercase tracking-[0.4em] font-bold">
+                    <span class="w-8 h-px bg-salon-rose"></span>
+                    Price List 03
+                    <span class="w-8 h-px bg-salon-rose"></span>
+                </div>
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-dark-gray dark:text-white mb-6">
+                    Makeup <span class="italic font-light text-salon-rose">Prices</span>
+                </h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-base md:text-lg">
+                    From a soft natural glow to full editorial glam — our artists bring your vision to life.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+                <!-- Natural Makeup -->
+                <div class="bg-white dark:bg-[#0f0f0f] rounded-3xl p-6 md:p-8 shadow-xl border border-gray-100 dark:border-white/5 flex flex-col justify-between">
+                    <div>
+                        <div class="text-center mb-6 pb-5 border-b border-salon-rose/10 dark:border-salon-rose/20">
+                            <div class="w-14 h-14 rounded-2xl bg-salon-rose/10 flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-feather-alt text-salon-rose text-xl"></i>
+                            </div>
+                            <h3 class="font-serif font-bold text-xl text-dark-gray dark:text-white">Natural Glow</h3>
+                            <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mt-1">Everyday elegance</p>
+                        </div>
+                        <div class="text-center mb-6">
+                            <p class="font-serif font-bold text-4xl text-salon-rose"><span class="text-xl">$</span>60</p>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Soft, minimal coverage</div>
+                            <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Natural brows &amp; lashes</div>
+                            <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Nude or pink lips</div>
+                            <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> 45-min session</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Party Glam (Featured) -->
+                <div class="bg-white dark:bg-[#0f0f0f] rounded-3xl p-6 md:p-8 shadow-2xl border-2 border-salon-rose relative flex flex-col justify-between">
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
+                        <span class="bg-salon-rose text-white text-[9px] uppercase tracking-widest font-bold px-4 py-1.5 rounded-full whitespace-nowrap shadow-md inline-block">Most Popular</span>
+                    </div>
+                    <div>
+                        <div class="text-center mb-6 pb-5 border-b border-salon-rose/10 dark:border-salon-rose/20">
+                            <div class="w-14 h-14 rounded-2xl bg-salon-rose/10 flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-brush text-salon-rose text-xl"></i>
+                            </div>
+                            <h3 class="font-serif font-bold text-xl text-dark-gray dark:text-white">Party Glam</h3>
+                            <p class="text-[10px] uppercase tracking-widest text-salon-rose font-bold mt-1">Event-ready look</p>
+                        </div>
+                        <div class="text-center mb-6">
+                            <p class="font-serif font-bold text-4xl text-salon-rose"><span class="text-xl">$</span>95</p>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Full-coverage base</div>
+                            <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> HD contour &amp; highlight</div>
+                            <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Smokey or bold eyes</div>
+                            <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Strip or individual lashes</div>
+                            <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> 75-min session</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Editorial Makeup -->
+                <div class="bg-white dark:bg-[#0f0f0f] rounded-3xl p-6 md:p-8 shadow-xl border border-gray-100 dark:border-white/5 flex flex-col justify-between">
+                    <div>
+                        <div class="text-center mb-6 pb-5 border-b border-salon-rose/10 dark:border-salon-rose/20">
+                            <div class="w-14 h-14 rounded-2xl bg-salon-plum/10 flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-camera text-salon-plum dark:text-salon-rose text-xl"></i>
+                            </div>
+                            <h3 class="font-serif font-bold text-xl text-dark-gray dark:text-white">Editorial / HD</h3>
+                            <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mt-1">Photos &amp; film</p>
+                        </div>
+                        <div class="text-center mb-6">
+                            <p class="font-serif font-bold text-4xl text-salon-rose"><span class="text-xl">$</span>150</p>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Airbrush / HD makeup</div>
+                            <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Photo-ready finish</div>
+                            <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Creative or bold looks</div>
+                            <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Touch-up kit included</div>
+                            <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> 90-min session</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add-ons -->
+            <div class="mt-12 bg-white dark:bg-[#0f0f0f] rounded-3xl p-6 md:p-8 shadow-xl border border-gray-100 dark:border-white/5 max-w-3xl mx-auto">
+                <h4 class="font-serif font-bold text-lg text-dark-gray dark:text-white mb-4 text-center">Makeup Add-Ons</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="price-row">
+                        <div class="price-name !text-base">Individual Lashes</div>
+                        <div class="price-amount !text-lg"><span class="currency">$</span>20</div>
+                    </div>
+                    <div class="price-row">
+                        <div class="price-name !text-base">Hair Styling Add-On</div>
+                        <div class="price-amount !text-lg"><span class="currency">$</span>45</div>
+                    </div>
+                    <div class="price-row">
+                        <div class="price-name !text-base">Saree / Lehenga Draping</div>
+                        <div class="price-amount !text-lg"><span class="currency">$</span>35</div>
+                    </div>
+                    <div class="price-row">
+                        <div class="price-name !text-base">On-Location Service</div>
+                        <div class="price-amount !text-lg"><span class="currency">$</span>75</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================ SECTION 5: BEAUTY PACKAGES ============================ -->
+    <section class="py-24 lg:py-32 bg-white dark:bg-dark-gray relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-[600px] h-[600px] bg-salon-rose/5 rounded-full blur-[130px] pointer-events-none"></div>
+
+        <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 mb-4 text-salon-rose text-[10px] uppercase tracking-[0.4em] font-bold">
+                    <span class="w-8 h-px bg-salon-rose"></span>
+                    Save More
+                    <span class="w-8 h-px bg-salon-rose"></span>
+                </div>
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-dark-gray dark:text-white mb-6">
+                    Beauty <span class="italic font-light text-salon-rose">Packages</span>
+                </h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-base md:text-lg">
+                    Bundle your favourite services and save up to 30% — perfect for brides, celebrations, or monthly self-care.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+                <!-- Package 1 -->
+                <div class="package-card">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-salon-rose/10 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-wand-magic-sparkles text-salon-rose text-2xl"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-2xl text-dark-gray dark:text-white mb-2">Pamper Me</h3>
+                        <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Half-day indulgence</p>
+                    </div>
+                    <div class="text-center mb-6">
+                        <p class="font-serif font-bold text-5xl text-salon-rose"><span class="text-2xl">$</span>149</p>
+                        <p class="text-xs text-gray-400 line-through mt-1">$199 value</p>
+                    </div>
+                    <div class="space-y-3 mb-8 flex-1">
+                        <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Signature Glow Facial</div>
+                        <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Blow-Dry &amp; Styling</div>
+                        <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Express Manicure</div>
+                        <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Eyebrow Threading</div>
+                        <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Complimentary Refreshment</div>
+                    </div>
+                    <a href="contact.html#enquiry" class="block text-center bg-salon-rose/10 hover:bg-salon-rose text-salon-rose hover:text-white font-bold py-3.5 rounded-xl text-xs uppercase tracking-widest transition-all duration-300">
+                        Book Package
+                    </a>
+                </div>
+
+                <!-- Package 2 — Featured -->
+                <div class="package-card featured !overflow-visible relative">
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
+                        <span class="bg-salon-rose text-white text-[9px] uppercase tracking-widest font-bold px-4 py-1.5 rounded-full whitespace-nowrap shadow-md inline-block">Best Value</span>
+                    </div>
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-crown text-salon-rose text-2xl"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-2xl text-white mb-2">Bridal Bliss</h3>
+                        <p class="text-[10px] uppercase tracking-widest text-salon-rose font-bold">Complete bridal package</p>
+                    </div>
+                    <div class="text-center mb-6">
+                        <p class="font-serif font-bold text-5xl text-salon-rose"><span class="text-2xl">$</span>799</p>
+                        <p class="text-xs text-gray-400 line-through mt-1">$1,150 value</p>
+                    </div>
+                    <div class="space-y-3 mb-8 flex-1">
+                        <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> 6 Pre-Bridal Sessions</div>
+                        <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Bridal Makeup &amp; Hair</div>
+                        <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Saree / Lehenga Draping</div>
+                        <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Pre-Bridal Facial &amp; Body Polish</div>
+                        <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Manicure &amp; Pedicure</div>
+                        <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Trial Session Included</div>
+                    </div>
+                    <a href="contact.html#enquiry" class="block text-center bg-salon-rose hover:bg-white hover:text-salon-plum text-white font-bold py-3.5 rounded-xl text-xs uppercase tracking-widest transition-all duration-300">
+                        Book Package
+                    </a>
+                </div>
+
+                <!-- Package 3 -->
+                <div class="package-card">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-salon-rose/10 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-heart text-salon-rose text-2xl"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-2xl text-dark-gray dark:text-white mb-2">Monthly Glow</h3>
+                        <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Membership plan</p>
+                    </div>
+                    <div class="text-center mb-6">
+                        <p class="font-serif font-bold text-5xl text-salon-rose"><span class="text-2xl">$</span>199</p>
+                        <p class="text-xs text-gray-400 mt-1">per month · cancel anytime</p>
+                    </div>
+                    <div class="space-y-3 mb-8 flex-1">
+                        <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> 2 Facials / month</div>
+                        <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Unlimited Threading</div>
+                        <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> 1 Blow-Dry / month</div>
+                        <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> 10% off all other services</div>
+                        <div class="package-check"><i class="fas fa-check text-salon-rose text-xs"></i> Priority booking</div>
+                    </div>
+                    <a href="contact.html#enquiry" class="block text-center bg-salon-rose/10 hover:bg-salon-rose text-salon-rose hover:text-white font-bold py-3.5 rounded-xl text-xs uppercase tracking-widest transition-all duration-300">
+                        Subscribe Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================ SECTION 6: SPECIAL OFFERS ============================ -->
+    <section class="py-24 lg:py-32 bg-warm-gray dark:bg-[#050505] relative overflow-hidden">
+        <div class="absolute inset-0 pattern-dots pointer-events-none"></div>
+        <div class="absolute top-1/2 right-0 w-[600px] h-[600px] bg-salon-rose/5 rounded-full blur-[130px] pointer-events-none"></div>
+
+        <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 mb-4 text-salon-rose text-[10px] uppercase tracking-[0.4em] font-bold">
+                    <span class="w-8 h-px bg-salon-rose"></span>
+                    Limited Time
+                    <span class="w-8 h-px bg-salon-rose"></span>
+                </div>
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-dark-gray dark:text-white mb-6">
+                    Special <span class="italic font-light text-salon-rose">Offers</span>
+                </h2>
+                <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-base md:text-lg">
+                    Exclusive deals to help you look and feel your best — without stretching your budget.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+                <!-- Offer 1 -->
+                <div class="offer-card">
+                    <div>
+                        <div class="flex items-start justify-between gap-4 mb-4">
+                            <div class="w-14 h-14 rounded-2xl bg-salon-rose flex items-center justify-center shrink-0 shadow-lg">
+                                <i class="fas fa-percent text-white text-xl"></i>
+                            </div>
+                            <span class="bg-salon-rose/10 text-salon-rose text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">First Visit</span>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-dark-gray dark:text-white mb-2 min-h-[3.5rem] flex items-center">20% Off First Service</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-5">
+                            New to Glamora? Enjoy 20% off any single service on your very first visit. Because first impressions should sparkle.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-2">
+                        <a href="contact.html#enquiry" class="inline-flex items-center gap-2 text-salon-rose text-[10px] uppercase tracking-widest font-bold group">
+                            <span class="relative">Claim Offer<span class="absolute -bottom-1 left-0 w-0 h-px bg-salon-rose transition-all duration-300 group-hover:w-full"></span></span>
+                            <i class="fas fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Offer 2 -->
+                <div class="offer-card">
+                    <div>
+                        <div class="flex items-start justify-between gap-4 mb-4">
+                            <div class="w-14 h-14 rounded-2xl bg-salon-gold flex items-center justify-center shrink-0 shadow-lg">
+                                <i class="fas fa-user-friends text-white text-xl"></i>
+                            </div>
+                            <span class="bg-salon-gold/10 text-salon-gold text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Refer &amp; Earn</span>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-dark-gray dark:text-white mb-2 min-h-[3.5rem] flex items-center">Refer a Friend — Both Get 15% Off</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-5">
+                            Bring a friend along and you'll both receive 15% off your next service. Beauty is better shared.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-2">
+                        <a href="contact.html" class="inline-flex items-center gap-2 text-salon-gold text-[10px] uppercase tracking-widest font-bold group">
+                            <span class="relative">Refer Now<span class="absolute -bottom-1 left-0 w-0 h-px bg-salon-gold transition-all duration-300 group-hover:w-full"></span></span>
+                            <i class="fas fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Offer 3 -->
+                <div class="offer-card">
+                    <div>
+                        <div class="flex items-start justify-between gap-4 mb-4">
+                            <div class="w-14 h-14 rounded-2xl bg-salon-rose flex items-center justify-center shrink-0 shadow-lg">
+                                <i class="fas fa-birthday-cake text-white text-xl"></i>
+                            </div>
+                            <span class="bg-salon-rose/10 text-salon-rose text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Birthday</span>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-dark-gray dark:text-white mb-2 min-h-[3.5rem] flex items-center">Free Birthday Glow Facial</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-5">
+                            Celebrate your special day with us — enjoy a complimentary express glow facial during your birthday month.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-2">
+                        <a href="contact.html#enquiry" class="inline-flex items-center gap-2 text-salon-rose text-[10px] uppercase tracking-widest font-bold group">
+                            <span class="relative">Book Now<span class="absolute -bottom-1 left-0 w-0 h-px bg-salon-rose transition-all duration-300 group-hover:w-full"></span></span>
+                            <i class="fas fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Offer 4 -->
+                <div class="offer-card">
+                    <div>
+                        <div class="flex items-start justify-between gap-4 mb-4">
+                            <div class="w-14 h-14 rounded-2xl bg-salon-plum flex items-center justify-center shrink-0 shadow-lg">
+                                <i class="fas fa-calendar-week text-white text-xl"></i>
+                            </div>
+                            <span class="bg-salon-plum/10 text-salon-plum dark:text-salon-rose text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Weekday</span>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-dark-gray dark:text-white mb-2 min-h-[3.5rem] flex items-center">Weekday Special — 15% Off</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-5">
+                            Book any service Monday to Thursday and enjoy 15% off. Perfect for a mid-week pick-me-up.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-2">
+                        <a href="contact.html#enquiry" class="inline-flex items-center gap-2 text-salon-plum dark:text-salon-rose text-[10px] uppercase tracking-widest font-bold group">
+                            <span class="relative">Book Now<span class="absolute -bottom-1 left-0 w-0 h-px bg-current transition-all duration-300 group-hover:w-full"></span></span>
+                            <i class="fas fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Offer 5 -->
+                <div class="offer-card">
+                    <div>
+                        <div class="flex items-start justify-between gap-4 mb-4">
+                            <div class="w-14 h-14 rounded-2xl bg-salon-rose flex items-center justify-center shrink-0 shadow-lg">
+                                <i class="fas fa-heart text-white text-xl"></i>
+                            </div>
+                            <span class="bg-salon-rose/10 text-salon-rose text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Couples</span>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-dark-gray dark:text-white mb-2 min-h-[3.5rem] flex items-center">Couples' Spa Package</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-5">
+                            Book a couples' massage or facial session and get a complimentary bottle of champagne. Romance, unlocked.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-2">
+                        <a href="contact.html#enquiry" class="inline-flex items-center gap-2 text-salon-rose text-[10px] uppercase tracking-widest font-bold group">
+                            <span class="relative">Book Together<span class="absolute -bottom-1 left-0 w-0 h-px bg-salon-rose transition-all duration-300 group-hover:w-full"></span></span>
+                            <i class="fas fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Offer 6 — CTA style -->
+                <div class="offer-card bg-gradient-to-br from-salon-plum to-salon-charcoal !border-salon-rose/40">
+                    <div>
+                        <div class="flex items-start justify-between gap-4 mb-4">
+                            <div class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur flex items-center justify-center shrink-0 shadow-lg">
+                                <i class="fas fa-gem text-salon-rose text-xl"></i>
+                            </div>
+                            <span class="bg-salon-rose/20 text-salon-rose text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Members Only</span>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-white mb-2 min-h-[3.5rem] flex items-center">Exclusive Member Benefits</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-5">
+                            Join our membership program and unlock permanent discounts, priority bookings, and surprise gifts all year round.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-2">
+                        <a href="contact.html" class="inline-flex items-center gap-2 text-salon-rose text-[10px] uppercase tracking-widest font-bold group">
+                            <span class="relative">Learn More<span class="absolute -bottom-1 left-0 w-0 h-px bg-salon-rose transition-all duration-300 group-hover:w-full"></span></span>
+                            <i class="fas fa-arrow-right text-[10px] transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Note about offers -->
+            <div class="text-center mt-12">
+                <p class="text-xs text-gray-500 dark:text-gray-400 italic">
+                    <i class="fas fa-info-circle text-salon-rose mr-1"></i>
+                    Offers cannot be combined with other discounts. Terms &amp; conditions apply. Contact us for full details.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================ FINAL CTA ============================ -->
+    <section class="py-20 lg:py-28 bg-white dark:bg-dark-gray relative overflow-hidden">
+        <div class="absolute inset-0 pattern-grid opacity-60 dark:opacity-20 pointer-events-none"></div>
+
+        <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="relative bg-salon-plum dark:bg-[#0a0a0a] rounded-3xl p-8 lg:p-16 overflow-hidden border border-white/5">
+                <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-salon-rose/15 rounded-full blur-[120px] pointer-events-none"></div>
+                <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10 text-center lg:text-left">
+                    <div class="max-w-2xl">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-salon-rose/20 border border-salon-rose/30 mb-5">
+                            <span class="w-2 h-2 rounded-full bg-salon-rose animate-pulse"></span>
+                            <span class="text-salon-rose text-[10px] uppercase tracking-[0.3em] font-bold">Ready to Book?</span>
+                        </div>
+                        <h3 class="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-4 leading-tight">
+                            Reserve Your <span class="italic font-light text-salon-rose">Glow</span> Today
+                        </h3>
+                        <p class="text-gray-300 text-sm md:text-base max-w-xl">
+                            Book any service or package online in under 60 seconds. Free consultation with every appointment.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-end shrink-0">
+                        <a href="contact.html#enquiry"
+                            class="bg-salon-rose hover:bg-white hover:text-salon-plum text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest font-bold shadow-xl transition-all duration-300 hover:-translate-y-1">
+                            Book Appointment
+                        </a>
+                        <a href="services.html"
+                            class="border border-white/20 hover:border-salon-rose hover:text-salon-rose text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest font-bold transition-all duration-300">
+                            View Services
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#050505] text-white pt-24 pb-8 relative overflow-hidden border-t border-white/10">
+        <div class="absolute bottom-0 left-0 w-full flex justify-center pointer-events-none opacity-[0.03] translate-y-1/4 select-none">
+            <h2 class="font-serif font-black text-[15vw] whitespace-nowrap">Glamora</h2>
+        </div>
+        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-12 mb-20">
+                <div class="lg:col-span-5">
+                    <div class="flex gap-4 mb-8">
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:border-salon-rose hover:text-salon-rose transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:border-salon-rose hover:text-salon-rose transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:border-salon-rose hover:text-salon-rose transition"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:border-salon-rose hover:text-salon-rose transition"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <a href="index.html" class="flex items-center gap-3 group"><span class="text-2xl md:text-3xl font-serif font-bold text-salon-rose tracking-wide transition-colors"><span class="italic">Glamora</span></span></a>
+                    <p class="text-gray-400 text-sm mt-6 max-w-md leading-relaxed">Premium salon &amp; beauty parlour. Expert hair, skin, makeup, nails, and spa treatments. Family-owned since 2010.</p>
+                </div>
+                <div class="lg:col-span-3">
+                    <h4 class="text-[10px] font-bold uppercase tracking-[0.2em] mb-8 text-gray-400">Explore</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="services.html" class="hover:text-salon-rose transition">Services</a></li>
+                        <li><a href="gallery.html" class="hover:text-salon-rose transition">Gallery</a></li>
+                        <li><a href="hair.html" class="hover:text-salon-rose transition">Hair</a></li>
+                        <li><a href="pricing.html" class="hover:text-salon-rose transition">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="lg:col-span-4">
+                    <h4 class="text-[10px] font-bold uppercase tracking-[0.2em] mb-8 text-gray-400">Connect</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-envelope text-salon-rose shrink-0"></i>
+                            <a href="mailto:hello@glamora.com" class="text-salon-rose hover:text-white transition">hello@glamora.com</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-salon-rose shrink-0"></i>
+                            <a href="tel:+14242697880" class="hover:text-salon-rose transition">+1 (424) 269-7880</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-salon-rose shrink-0"></i>
+                            <span>Los Angeles, CA — Ships Nationwide</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-[10px] uppercase tracking-widest">© 2026 Glamora. All rights reserved.</p>
+                <div class="flex gap-8 text-[10px] text-gray-500 uppercase tracking-widest"><a href="#" class="hover:text-salon-rose transition">Privacy</a><a href="#" class="hover:text-salon-rose transition">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const themeToggle = document.getElementById('theme-toggle'), mobileTheme = document.getElementById('mobile-theme-toggle'), html = document.documentElement;
+            function toggleTheme() { html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); }
+            if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+            if (mobileTheme) mobileTheme.addEventListener('click', toggleTheme);
+            if (localStorage.getItem('theme') === 'light') html.classList.remove('dark'); else html.classList.add('dark');
+
+            const rtlBtn = document.getElementById('rtl-toggle'), mobileRtl = document.getElementById('mobile-rtl-toggle');
+            function toggleRTL() { if (html.getAttribute('dir') === 'rtl') html.removeAttribute('dir'); else html.setAttribute('dir', 'rtl'); localStorage.setItem('direction', html.getAttribute('dir') || 'ltr'); }
+            if (rtlBtn) rtlBtn.addEventListener('click', toggleRTL);
+            if (mobileRtl) mobileRtl.addEventListener('click', toggleRTL);
+            if (localStorage.getItem('direction') === 'rtl') html.setAttribute('dir', 'rtl');
+
+            const menuBtn = document.getElementById('mobile-menu-button'), mobileMenu = document.getElementById('mobile-menu'), menuIcon = document.getElementById('menu-icon'), closeIcon = document.getElementById('close-icon'), body = document.body;
+            function closeMobileMenu() { if (mobileMenu && !mobileMenu.classList.contains('hidden')) { mobileMenu.classList.add('hidden'); if (menuIcon && closeIcon) { menuIcon.classList.remove('hidden'); closeIcon.classList.add('hidden'); } body.classList.remove('menu-open'); body.style.overflow = ''; } }
+            function openMobileMenu() { if (mobileMenu && mobileMenu.classList.contains('hidden')) { mobileMenu.classList.remove('hidden'); if (menuIcon && closeIcon) { menuIcon.classList.add('hidden'); closeIcon.classList.remove('hidden'); } body.classList.add('menu-open'); body.style.overflow = 'hidden'; } }
+            if (menuBtn && mobileMenu) { menuBtn.addEventListener('click', (e) => { e.stopPropagation(); mobileMenu.classList.contains('hidden') ? openMobileMenu() : closeMobileMenu(); }); document.querySelectorAll('#mobile-menu a').forEach(link => link.addEventListener('click', closeMobileMenu)); window.addEventListener('resize', () => { if (window.innerWidth >= 1280 && !mobileMenu.classList.contains('hidden')) closeMobileMenu(); }); }
+
+            const homeBtn = document.getElementById('mobile-home-dropdown-btn');
+            const homeSub = document.getElementById('mobile-home-submenu');
+            const homeIcon = document.getElementById('mobile-home-icon');
+            if (homeBtn && homeSub) {
+                homeBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    homeSub.classList.toggle('hidden');
+                    if (homeIcon) homeIcon.classList.toggle('rotate');
+                });
+            }
+
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+            reveals.forEach(el => observer.observe(el));
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Glamora | Beauty Parlour &amp; Wellness Studio</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+   <link rel="icon" href="assests/fav.png" type="image/jpeg">
+    <meta name="description"
+        content="Glamora Beauty Parlour — Expert facials, threading, waxing, bridal packages, and wellness therapies. Your beauty, perfected.">
+
+    <!-- Tailwind CSS CDN -->
+      <script src="tailwind.js"></script>
+
+    <!-- Font Awesome + Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'salon-rose': '#C9737E',
+                        'salon-plum': '#4A2545',
+                        'salon-cream': '#FBF7F2',
+                        'salon-blush': '#F5E1DE',
+                        'salon-gold': '#C9A227',
+                        'salon-charcoal': '#2B2226',
+                        'salon-rose': '#C9737E',
+                        'dark-gray': '#111111',
+                        'warm-gray': '#FDF9F2'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Jost"', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        'widest-xl': '0.3em',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        [dir="rtl"] { direction: rtl; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeInUp 1.2s ease-out forwards; }
+
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+        .animate-bounce-slow { animation: bounce-slow 2s infinite; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.02); }
+        }
+        .animate-float { animation: float 8s ease-in-out infinite; }
+
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { overflow-x: hidden; }
+
+        #mobile-menu {
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
+            transition: all 0.3s ease;
+            transform: translateZ(0);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .mobile-dropdown-icon { transition: transform 0.3s ease; }
+        .mobile-dropdown-icon.rotate { transform: rotate(180deg); }
+
+        .img-zoom-container { overflow: hidden; }
+        .img-zoom-container img {
+            transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .img-zoom-container:hover img { transform: scale(1.08); }
+
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px currentColor;
+        }
+        .text-outline-white {
+            color: transparent;
+            -webkit-text-stroke: 1px #ffffff;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease-out;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .clip-diagonal {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+        @media (max-width: 1024px) {
+            .clip-diagonal { clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); }
+        }
+
+        .bg-grain {
+            background-image: radial-gradient(rgba(74, 37, 69, 0.03) 1.5px, transparent 1.5px);
+            background-size: 28px 28px;
+        }
+
+        /* Dark mode text fixes */
+        .dark .dark\:text-white { color: #ffffff !important; }
+        .dark .dark\:text-gray-200 { color: #e5e5e5 !important; }
+        .dark .dark\:text-gray-300 { color: #d1d1d1 !important; }
+        .dark .dark\:text-gray-400 { color: #a3a3a3 !important; }
+        .dark p, .dark li, .dark span:not(.text-salon-gold):not(.text-salon-rose), .dark .text-gray-600 { color: #cbd5e1 !important; }
+        .dark h1, .dark h2, .dark h3, .dark h4, .dark .font-serif { color: #ffffff !important; }
+        .dark .bg-white\/80, .dark .bg-white\/95 { background-color: #0a0a0a !important; }
+        .dark .border-gray-200 { border-color: rgba(255, 255, 255, 0.1) !important; }
+        .dark .bg-gray-50 { background-color: #1a1a1a !important; }
+        .dark .hover\:bg-gray-100:hover { background-color: #2a2a2a !important; }
+        .dark .text-dark-gray { color: #ffffff !important; }
+        .dark .bg-warm-gray { background-color: #0a0a0a !important; }
+        .dark .bg-white { background-color: #0f0f0f !important; }
+        .dark input[type="date"]::-webkit-calendar-picker-indicator,
+        .dark input[type="time"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            opacity: 0.6;
+        }
+
+        @media (max-width: 1280px) {
+            .nav-menu-container { display: none; }
+        }
+
+        body.menu-open {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+
+        button:active { transform: scale(0.97); }
+
+        @media (max-width: 640px) {
+            .hero-text-responsive {
+                font-size: 3rem !important;
+                line-height: 1.1 !important;
+            }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        .animate-shimmer {
+            background: linear-gradient(90deg, transparent, rgba(201, 115, 126, 0.1), transparent);
+            background-size: 1000px 100%;
+            animation: shimmer 3s infinite;
+        }
+
+        .counter-number {
+            font-feature-settings: "tnum";
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Parlour-specific */
+        .salon-glow {
+            box-shadow: 0 0 40px rgba(201, 115, 126, 0.15), 0 0 80px rgba(201, 115, 126, 0.05);
+        }
+        .dark .salon-glow {
+            box-shadow: 0 0 40px rgba(201, 115, 126, 0.25), 0 0 80px rgba(201, 115, 126, 0.1);
+        }
+
+        .service-card-hover {
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .service-card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+        }
+        .dark .service-card-hover:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #C9737E, #4A2545);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes float-badge {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+        .float-badge { animation: float-badge 6s ease-in-out infinite; }
+        .float-badge-delay { animation: float-badge 6s ease-in-out 2s infinite; }
+        .float-badge-delay-2 { animation: float-badge 6s ease-in-out 4s infinite; }
+
+        /* Marquee */
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 30s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Treatment pill */
+        .treatment-pill {
+            transition: all 0.3s ease;
+        }
+        .treatment-pill:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(201, 115, 126, 0.25);
+        }
+
+        /* Before/After slider (simple) */
+        .before-after {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2rem;
+        }
+        .before-after img { display: block; width: 100%; }
+        .before-after .after {
+            position: absolute;
+            inset: 0;
+            clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+        }
+        .before-after .divider {
+            position: absolute;
+            top: 0; bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: #fff;
+            box-shadow: 0 0 20px rgba(255,255,255,0.8);
+        }
+        .before-after .handle {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px; height: 44px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            cursor: ew-resize;
+        }
+
+        /* Ornament divider */
+        .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .ornament::before, .ornament::after {
+            content: '';
+            height: 1px;
+            width: 40px;
+            background: currentColor;
+            opacity: 0.4;
+        }
+
+        /* Timeline dot */
+        .timeline-dot {
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            background: #C9737E;
+            box-shadow: 0 0 0 4px rgba(143,168,143,0.2);
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+
+<body
+    class="font-sans text-gray-800 antialiased transition-colors duration-300 bg-warm-gray dark:bg-dark-gray dark:text-gray-100 bg-grain">
+
+    <!-- HEADER — Beauty Parlour -->
+    <nav
+        class="bg-white/95 dark:bg-[#0a0a0a]/95 backdrop-blur-xl fixed w-full top-0 z-50 border-b border-gray-200/50 dark:border-white/10 transition-all duration-500 shadow-lg">
+        <div class="max-w-[1200px] mx-auto nav-container px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="flex items-center gap-3 group">
+                        <div class="flex flex-col">
+                            <span class="text-2xl md:text-3xl font-serif font-bold text-salon-rose tracking-wide transition-colors"><span class="italic">Glamora</span></span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden xl:flex items-center justify-center flex-1 nav-menu-container mx-4">
+                    <div
+                        class="flex items-center gap-1 lg:gap-1 bg-gray-50/50 dark:bg-white/5 p-1.5 rounded-full border border-gray-100 dark:border-white/5">
+                        <div class="relative group">
+                            <button
+                                class="bg-white dark:bg-[#1a1a1a] shadow-sm text-salon-rose dark:text-salon-rose font-bold transition px-3 py-2 rounded-full flex items-center gap-1 text-[10px] uppercase tracking-widest">
+                                <span>Home</span>
+                                <i class="fas fa-chevron-down text-[8px] ms-0.5"></i>
+                            </button>
+                            <div
+                                class="absolute start-0 mt-3 w-40 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-white/10 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                                <a href="index.html"
+                                    class="block px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest transition">Home 1</a>
+                                <a href="home2.html"
+                                    class="block px-4 py-3 text-salon-rose font-bold bg-gray-50 dark:bg-white/5 text-[10px] uppercase tracking-widest transition">Home 2</a>
+                            </div>
+                        </div>
+                        <a href="about.html"
+                            class="nav-link text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium px-3 py-2 rounded-full hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">About</a>
+                        <a href="services.html"
+                            class="nav-link text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium px-3 py-2 rounded-full hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">Services</a>
+                        <a href="gallery.html"
+                            class="nav-link text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium px-3 py-2 rounded-full hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">Gallery</a>
+                        <a href="hair.html"
+                            class="nav-link text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium px-3 py-2 rounded-full hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">Hair</a>
+                        <a href="pricing.html"
+                            class="nav-link text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium px-3 py-2 rounded-full hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">Pricing</a>
+                        <a href="skin-care.html"
+                            class="nav-link text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium px-3 py-2 rounded-full hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">Skin Care</a>
+                        <a href="contact.html"
+                            class="nav-link text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium px-3 py-2 rounded-full hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Right side actions -->
+                <div class="hidden xl:flex items-center gap-2">
+                    <button id="rtl-toggle" class="w-9 h-9 md:w-10 md:h-10 rounded-full border border-gray-200 dark:border-white/10 flex items-center justify-center hover:border-salon-rose transition-all"><span class="text-[9px] font-black text-dark-gray dark:text-white">RTL</span></button>
+                    <button id="theme-toggle" class="w-9 h-9 md:w-10 md:h-10 rounded-full border border-gray-200 dark:border-white/10 flex items-center justify-center hover:border-salon-rose transition-all"><i class="fas fa-moon dark:hidden text-xs text-dark-gray dark:text-white"></i><i class="fas fa-sun hidden dark:inline text-xs text-dark-gray dark:text-white"></i></button>
+                    <a href="contact.html#enquiry"
+                        class="bg-salon-rose hover:bg-salon-plum text-white px-5 py-2.5 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-lg hover:-translate-y-0.5 transition duration-300">Book
+                        Now</a>
+                </div>
+
+                <div class="xl:hidden flex items-center gap-2">
+                    <button id="mobile-menu-button"
+                        class="text-dark-gray dark:text-white p-2 focus:outline-none active:scale-95 transition hover:text-salon-rose">
+                        <i id="menu-icon" class="fas fa-bars text-lg"></i>
+                        <i id="close-icon" class="fas fa-times text-lg hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden xl:hidden bg-white dark:bg-[#0a0a0a] border-t border-gray-200 dark:border-white/10 absolute w-full shadow-2xl z-50"
+            style="top: 64px;">
+            <div class="px-5 py-5 pb-8 space-y-1 max-h-[calc(100vh-64px)] overflow-y-auto">
+                <div class="w-full">
+                    <button id="mobile-home-dropdown-btn"
+                        class="w-full flex justify-between items-center px-4 py-3.5 text-salon-rose bg-gray-50/80 dark:bg-white/5 rounded-xl text-sm font-bold tracking-wider uppercase">
+                        <span>Home</span>
+                        <i id="mobile-home-icon"
+                            class="fas fa-chevron-down text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="mobile-home-submenu"
+                        class="hidden pl-4 space-y-1 mt-1 bg-gray-50/50 dark:bg-white/5 rounded-xl py-2">
+                        <a href="index.html"
+                            class="block px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest transition">Home 1</a>
+                        <a href="home2.html"
+                            class="block px-4 py-3 text-salon-rose font-bold bg-gray-50 dark:bg-white/5 text-[10px] uppercase tracking-widest transition">Home 2</a>
+                    </div>
+                </div>
+                <a href="about.html"
+                    class="block px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">About</a>
+                <a href="services.html"
+                    class="block px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">Services</a>
+                <a href="gallery.html"
+                    class="block px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">Gallery</a>
+                <a href="hair.html"
+                    class="block px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">Hair</a>
+                <a href="pricing.html"
+                    class="block px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">Pricing</a>
+                <a href="skin-care.html"
+                    class="block px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">Skin Care</a>
+                <a href="contact.html"
+                    class="block px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">Contact</a>
+
+                <!-- Mobile toggles -->
+                <div class="pt-5 mt-5 border-t border-gray-200 dark:border-white/10">
+                    <div class="flex items-center justify-between gap-4 mb-4">
+                        <button id="mobile-rtl-toggle" class="flex-1 py-3 rounded-xl border border-gray-200 dark:border-white/10 flex items-center justify-center hover:border-salon-rose transition-all">
+                            <span class="text-[10px] font-black text-dark-gray dark:text-white">RTL MODE</span>
+                        </button>
+                        <button id="mobile-theme-toggle" class="flex-1 py-3 rounded-xl border border-gray-200 dark:border-white/10 flex items-center justify-center hover:border-salon-rose transition-all">
+                            <span class="text-[10px] font-black text-dark-gray dark:text-white mr-2">THEME</span>
+                            <i class="fas fa-moon dark:hidden text-xs text-dark-gray dark:text-white"></i>
+                            <i class="fas fa-sun hidden dark:inline text-xs text-dark-gray dark:text-white"></i>
+                        </button>
+                    </div>
+                    <a href="contact.html#enquiry"
+                        class="block mt-4 bg-salon-rose text-white text-center px-4 py-4 rounded-xl text-sm font-black uppercase tracking-widest shadow-lg hover:bg-salon-plum transition">Book
+                        Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION — BEAUTY PARLOUR ========== -->
+    <section class="relative min-h-[95vh] flex items-center py-28 lg:py-36 overflow-hidden bg-white dark:bg-dark-gray">
+        <div class="absolute top-0 left-0 w-2/3 h-full bg-gradient-to-r from-salon-rose/5 to-transparent pointer-events-none"></div>
+        <div class="absolute -bottom-32 -right-32 w-[500px] h-[500px] bg-salon-rose/5 rounded-full blur-[100px] pointer-events-none dark:bg-salon-rose/5"></div>
+        <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-salon-rose/5 rounded-full blur-3xl pointer-events-none float-badge"></div>
+        <div class="absolute bottom-1/3 right-1/3 w-56 h-56 bg-salon-rose/5 rounded-full blur-3xl pointer-events-none float-badge-delay"></div>
+
+        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                <!-- Text content -->
+                <div class="flex-1 text-left animate-fade-in opacity-0" style="animation-delay: 0.2s;">
+                    <span class="text-salon-rose text-[10px] sm:text-xs uppercase tracking-[0.3em] font-bold mb-6 block">
+                        BEAUTY PARLOUR · WELLNESS · BRIDAL
+                    </span>
+                    <h1 class="text-5xl sm:text-6xl md:text-7xl font-sans font-black text-dark-gray dark:text-white leading-[1.1] mb-8 tracking-tight">
+                        Your Beauty,<br>
+                        <span class="font-serif italic font-light text-salon-rose">Perfected.</span>
+                    </h1>
+                    <p class="text-gray-600 dark:text-gray-300 max-w-lg text-base md:text-lg font-light mb-10 leading-relaxed">
+                        From radiant facials and precise threading to luxurious waxing and unforgettable bridal packages — Glamora Beauty Parlour is your destination for timeless elegance and expert care.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="contact.html#enquiry"
+                            class="bg-salon-rose hover:bg-salon-plum text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest font-bold shadow-xl transition-all duration-300 hover:-translate-y-1">
+                            Book Treatment
+                        </a>
+                        <a href="#treatments"
+                            class="border border-gray-300 dark:border-white/20 hover:border-salon-rose hover:text-salon-rose text-dark-gray dark:text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest font-bold transition-all duration-300">
+                            Our Treatments
+                        </a>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-6 mt-12 text-gray-500 dark:text-gray-400">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-star text-salon-rose text-sm"></i>
+                            <span class="text-[10px] uppercase tracking-widest font-bold">5.0 Parlour Rating</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-certificate text-salon-rose text-sm"></i>
+                            <span class="text-[10px] uppercase tracking-widest font-bold">Certified Aestheticians</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-leaf text-salon-rose text-sm"></i>
+                            <span class="text-[10px] uppercase tracking-widest font-bold">Organic Products</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image -->
+                <div class="flex-1 relative animate-fade-in opacity-0" style="animation-delay: 0.4s;">
+                    <div class="relative group">
+                        <div class="absolute -inset-6 bg-salon-rose/15 rounded-[3rem] blur-3xl group-hover:bg-salon-rose/25 transition duration-700"></div>
+                        <div class="relative flex items-center justify-center">
+                            <div class="relative rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100 dark:border-white/10 aspect-square w-full max-w-md salon-glow">
+                                <img src="assests/hom1.jpg" alt="Beauty Parlour Treatment"
+                                    class="w-full h-full object-cover transform group-hover:scale-105 transition duration-1000">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                            </div>
+                        </div>
+                        <!-- Floating badge -->
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+   
+
+    <!-- ========== SECTION 1: PARLOUR TREATMENTS ========== -->
+    <section id="treatments" class="py-24 lg:py-40 bg-white dark:bg-dark-gray transition-colors overflow-hidden">
+        <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-salon-rose/5 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="text-center mb-20 lg:mb-28 relative z-10">
+                <div class="inline-block px-4 py-1 rounded-full bg-salon-rose/10 border border-salon-rose/20 mb-6">
+                    <span class="text-salon-rose text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold">Parlour Treatments</span>
+                </div>
+                <h2 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-dark-gray dark:text-white mb-6">
+                    Signature <span class="italic font-light text-salon-rose">Rituals</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-salon-rose to-transparent mx-auto"></div>
+                <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mt-6 text-sm md:text-base">
+                    Every treatment is a ritual — thoughtfully designed to restore your skin, calm your mind, and reveal your natural radiance.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Treatment 1 -->
+                <div class="service-card-hover group relative bg-white dark:bg-[#111] rounded-[2rem] overflow-hidden border border-gray-100 dark:border-white/10 shadow-xl flex flex-col h-full">
+                    <div class="aspect-square overflow-hidden shrink-0">
+                        <img src="assests/hom2.jpg" alt="Facials"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <div class="p-5 md:p-6 text-center flex flex-col grow justify-between">
+                        <h3 class="font-serif font-bold text-base md:text-lg text-dark-gray dark:text-white mb-2 min-h-[3rem] flex items-center justify-center">Luxury Facials</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-[9px] md:text-xs uppercase tracking-widest mt-auto">Hydra · Glow · Anti-Age</p>
+                    </div>
+                    <div class="absolute top-4 right-4 bg-salon-rose text-white text-[8px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Bestseller</div>
+                </div>
+
+                <!-- Treatment 2 -->
+                <div class="service-card-hover group relative bg-white dark:bg-[#111] rounded-[2rem] overflow-hidden border border-gray-100 dark:border-white/10 shadow-xl flex flex-col h-full">
+                    <div class="aspect-square overflow-hidden shrink-0">
+                        <img src="assests/hom3.png" alt="Threading"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <div class="p-5 md:p-6 text-center flex flex-col grow justify-between">
+                        <h3 class="font-serif font-bold text-base md:text-lg text-dark-gray dark:text-white mb-2 min-h-[3rem] flex items-center justify-center">Eyebrow &amp; Threading</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-[9px] md:text-xs uppercase tracking-widest mt-auto">Precise · Painless · Shaped</p>
+                    </div>
+                </div>
+
+                <!-- Treatment 3 -->
+                <div class="service-card-hover group relative bg-white dark:bg-[#111] rounded-[2rem] overflow-hidden border border-gray-100 dark:border-white/10 shadow-xl flex flex-col h-full">
+                    <div class="aspect-square overflow-hidden shrink-0">
+                        <img src="assests/p.jpg" alt="Waxing"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <div class="p-5 md:p-6 text-center flex flex-col grow justify-between">
+                        <h3 class="font-serif font-bold text-base md:text-lg text-dark-gray dark:text-white mb-2 min-h-[3rem] flex items-center justify-center">Waxing &amp; Hair Removal</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-[9px] md:text-xs uppercase tracking-widest mt-auto">Gentle · Smooth · Long-Lasting</p>
+                    </div>
+                </div>
+
+                <!-- Treatment 4 -->
+                <div class="service-card-hover group relative bg-white dark:bg-[#111] rounded-[2rem] overflow-hidden border border-gray-100 dark:border-white/10 shadow-xl flex flex-col h-full">
+                    <div class="aspect-square overflow-hidden shrink-0">
+                        <img src="assests/hom4.jpg" alt="Bridal Packages"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <div class="p-5 md:p-6 text-center flex flex-col grow justify-between">
+                        <h3 class="font-serif font-bold text-base md:text-lg text-dark-gray dark:text-white mb-2 min-h-[3rem] flex items-center justify-center">Bridal Packages</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-[9px] md:text-xs uppercase tracking-widest mt-auto">Pre-Bridal · Day-Of · Complete</p>
+                    </div>
+                    <div class="absolute top-4 right-4 bg-salon-rose text-white text-[8px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Premium</div>
+                </div>
+            </div>
+
+            <!-- Treatment pills -->
+            <div class="flex flex-wrap justify-center gap-3 mt-12">
+                <span class="treatment-pill inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-salon-rose/10 border border-salon-rose/20 text-salon-rose text-xs font-bold uppercase tracking-widest cursor-pointer">
+                    <i class="fas fa-hand-sparkles text-[10px]"></i> Manicure &amp; Pedicure
+                </span>
+                <span class="treatment-pill inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-salon-rose/10 border border-salon-rose/20 text-salon-rose text-xs font-bold uppercase tracking-widest cursor-pointer">
+                    <i class="fas fa-spa text-[10px]"></i> Body Polishing
+                </span>
+                <span class="treatment-pill inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-salon-rose/10 border border-salon-rose/20 text-salon-rose text-xs font-bold uppercase tracking-widest cursor-pointer">
+                    <i class="fas fa-leaf text-[10px]"></i> Aromatherapy
+                </span>
+                <span class="treatment-pill inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-salon-rose/10 border border-salon-rose/20 text-salon-rose text-xs font-bold uppercase tracking-widest cursor-pointer">
+                    <i class="fas fa-heart text-[10px]"></i> Hair Spa
+                </span>
+                <span class="treatment-pill inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-salon-rose/10 border border-salon-rose/20 text-salon-rose text-xs font-bold uppercase tracking-widest cursor-pointer">
+                    <i class="fas fa-sun text-[10px]"></i> De-Tan
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 2: BEFORE & AFTER ========== -->
+    <section class="py-24 lg:py-40 bg-warm-gray dark:bg-[#050505] transition-colors relative overflow-hidden">
+        <div class="absolute top-1/2 left-0 -translate-y-1/2 w-[600px] h-[600px] bg-salon-rose/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <!-- Text -->
+                <div>
+                    <div class="inline-block px-4 py-1 rounded-full bg-salon-rose/10 border border-salon-rose/20 mb-6">
+                        <span class="text-salon-rose text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold">Real Results</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-dark-gray dark:text-white mb-6 leading-tight">
+                        See the <span class="italic font-light text-salon-rose">Transformation</span>
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 text-base md:text-lg mb-6 leading-relaxed">
+                        Our aestheticians don't just apply treatments — they craft experiences. From dull to radiant, tired to glowing, every transformation tells a story of expert hands and premium care.
+                    </p>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm md:text-base mb-10 leading-relaxed">
+                        Over 10,000 clients have walked out of Glamora Beauty Parlour feeling more confident, more radiant, and more themselves. We use only dermatologist-tested, organic-certified products — because your skin deserves nothing less.
+                    </p>
+
+                    <div class="space-y-5 mb-10">
+                        <div class="flex items-start gap-4">
+                            <div class="timeline-dot mt-1.5"></div>
+                            <div>
+                                <h3 class="font-bold text-dark-gray dark:text-white text-sm mb-1">Personalised Skin Analysis</h3>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">Every facial begins with a detailed skin consultation and analysis.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="timeline-dot mt-1.5"></div>
+                            <div>
+                                <h3 class="font-bold text-dark-gray dark:text-white text-sm mb-1">Advanced Techniques</h3>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">From hydra-facials to LED therapy — we invest in the latest equipment.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="timeline-dot mt-1.5"></div>
+                            <div>
+                                <h3 class="font-bold text-dark-gray dark:text-white text-sm mb-1">Visible, Lasting Results</h3>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">Our clients see the difference from the very first session.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="gallery.html"
+                        class="inline-flex items-center gap-3 bg-salon-rose hover:bg-salon-plum text-white px-10 py-4 rounded-full text-xs uppercase tracking-widest font-bold shadow-xl transition-all duration-300 hover:-translate-y-1">
+                        View Transformations
+                        <i class="fas fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+
+                <!-- Before/After visual -->
+                <div class="relative">
+                    <div class="before-after shadow-2xl border border-gray-100 dark:border-white/10">
+                        <img src="assests/b.png" alt="Before Treatment">
+                        <div class="after">
+                            <img src="assests/a.png" alt="After Treatment">
+                        </div>
+                        <div class="divider"></div>
+                        <div class="handle">
+                            <i class="fas fa-arrows-alt-h text-salon-rose"></i>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 left-6 bg-white dark:bg-[#111] rounded-2xl p-4 shadow-2xl border border-gray-100 dark:border-white/10">
+                        <p class="text-[10px] uppercase tracking-widest text-gray-500 dark:text-gray-400 font-bold">Glow Facial — 1 Session</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 3: BRIDAL SUITE ========== -->
+    <section class="py-24 lg:py-40 bg-white dark:bg-black transition-colors relative overflow-hidden">
+        <div class="absolute bottom-0 right-0 w-1/3 h-1/2 bg-gradient-to-t from-salon-rose/5 to-transparent pointer-events-none"></div>
+
+        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20 lg:mb-28">
+                <div class="inline-block px-4 py-1 rounded-full bg-salon-rose/10 border border-salon-rose/20 mb-6">
+                    <span class="text-salon-rose text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold">Bridal Suite</span>
+                </div>
+                <h2 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-dark-gray dark:text-white mb-6">
+                    Your Perfect <span class="italic font-light text-salon-rose">Day</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-salon-rose to-transparent mx-auto"></div>
+                <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mt-6 text-sm md:text-base">
+                    Comprehensive bridal packages designed to make you look and feel absolutely radiant — from engagement to the final send-off.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                <!-- Package 1 -->
+                <div class="relative bg-white dark:bg-[#111] rounded-[2rem] overflow-hidden border border-gray-100 dark:border-white/10 shadow-xl p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-salon-rose/10 flex items-center justify-center mb-6">
+                            <i class="fas fa-ring text-2xl text-salon-rose"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-dark-gray dark:text-white mb-3">Engagement Glow</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-6">Pre-engagement skin prep, facial, threading, and a radiant makeup session for your special day.</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400"><i class="fas fa-check text-salon-rose text-[10px]"></i> 3 Pre-Sessions</li>
+                            <li class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400"><i class="fas fa-check text-salon-rose text-[10px]"></i> Makeup &amp; Hair</li>
+                            <li class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400"><i class="fas fa-check text-salon-rose text-[10px]"></i> Skin Consultation</li>
+                        </ul>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 dark:border-white/5 mt-auto">
+                        <p class="text-2xl font-serif font-bold text-salon-rose">$299</p>
+                    </div>
+                </div>
+
+                <!-- Package 2 -->
+                <div class="relative bg-white dark:bg-[#111] rounded-[2rem] overflow-hidden border-2 border-salon-rose shadow-2xl p-8 flex flex-col justify-between">
+                    <div class="absolute top-4 right-4 bg-salon-rose text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Most Popular</div>
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-salon-rose/10 flex items-center justify-center mb-6">
+                            <i class="fas fa-crown text-2xl text-salon-rose"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-dark-gray dark:text-white mb-3">Complete Bridal</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-6">The full bridal journey — from pre-bridal facials and body polishing to day-of makeup, hair, and draping.</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400"><i class="fas fa-check text-salon-rose text-[10px]"></i> 6 Pre-Bridal Sessions</li>
+                            <li class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400"><i class="fas fa-check text-salon-rose text-[10px]"></i> Day-Of Makeup &amp; Hair</li>
+                            <li class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400"><i class="fas fa-check text-salon-rose text-[10px]"></i> Body Polishing &amp; Waxing</li>
+                            <li class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400"><i class="fas fa-check text-salon-rose text-[10px]"></i> Saree/Lehenga Draping</li>
+                        </ul>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 dark:border-white/5 mt-auto">
+                        <p class="text-2xl font-serif font-bold text-salon-rose">$799</p>
+                    </div>
+                </div>
+
+                <!-- Package 3 -->
+                <div class="relative bg-white dark:bg-[#111] rounded-[2rem] overflow-hidden border border-gray-100 dark:border-white/10 shadow-xl p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-salon-rose/10 flex items-center justify-center mb-6">
+                            <i class="fas fa-glass-cheers text-2xl text-salon-rose"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-dark-gray dark:text-white mb-3">Entourage Package</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-6">Bridesmaids, mother of the bride, and family — group makeup and styling for up to 5 people.</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400"><i class="fas fa-check text-salon-rose text-[10px]"></i> Up to 5 People</li>
+                            <li class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400"><i class="fas fa-check text-salon-rose text-[10px]"></i> Group Discount</li>
+                            <li class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400"><i class="fas fa-check text-salon-rose text-[10px]"></i> On-Location Available</li>
+                        </ul>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100 dark:border-white/5 mt-auto">
+                        <p class="text-2xl font-serif font-bold text-salon-rose">$599</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-16">
+                <a href="booking.html"
+                    class="inline-flex items-center gap-3 bg-salon-rose hover:bg-salon-plum text-white px-10 py-4 rounded-full text-xs uppercase tracking-widest font-bold shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    Book Bridal Consultation
+                    <i class="fas fa-arrow-right text-[10px]"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 4: PARLOUR PROCESS ========== -->
+    <section class="py-24 lg:py-40 bg-warm-gray dark:bg-[#050505] transition-colors relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-1/3 h-1/2 bg-gradient-to-b from-salon-rose/5 to-transparent pointer-events-none"></div>
+
+        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20 lg:mb-28">
+                <div class="inline-block px-4 py-1 rounded-full bg-salon-rose/10 border border-salon-rose/20 mb-6">
+                    <span class="text-salon-rose text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold">How It Works</span>
+                </div>
+                <h2 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-dark-gray dark:text-white mb-6">
+                    Your Parlour <span class="italic font-light text-salon-rose">Journey</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-salon-rose to-transparent mx-auto"></div>
+                <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mt-6 text-sm md:text-base">
+                    From your first consultation to the final reveal — a seamless, luxurious experience at every step.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 relative z-10">
+                <div class="text-center group">
+                    <div class="relative inline-flex items-center justify-center w-20 h-20 rounded-full bg-white dark:bg-[#111] border-2 border-salon-rose/30 shadow-xl mb-6 group-hover:border-salon-rose transition-all duration-500 group-hover:scale-110">
+                        <span class="text-2xl font-serif font-bold step-number">01</span>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-dark-gray dark:text-white mb-3">Consultation</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed max-w-xs mx-auto">
+                        Share your concerns, goals, and preferences. We analyse your skin and recommend the perfect treatment.
+                    </p>
+                </div>
+
+                <div class="text-center group">
+                    <div class="relative inline-flex items-center justify-center w-20 h-20 rounded-full bg-white dark:bg-[#111] border-2 border-salon-rose/30 shadow-xl mb-6 group-hover:border-salon-rose transition-all duration-500 group-hover:scale-110">
+                        <span class="text-2xl font-serif font-bold step-number">02</span>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-dark-gray dark:text-white mb-3">Custom Plan</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed max-w-xs mx-auto">
+                        We create a personalised treatment plan tailored to your skin type, schedule, and budget.
+                    </p>
+                </div>
+
+                <div class="text-center group">
+                    <div class="relative inline-flex items-center justify-center w-20 h-20 rounded-full bg-white dark:bg-[#111] border-2 border-salon-rose/30 shadow-xl mb-6 group-hover:border-salon-rose transition-all duration-500 group-hover:scale-110">
+                        <span class="text-2xl font-serif font-bold step-number">03</span>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-dark-gray dark:text-white mb-3">Treatment</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed max-w-xs mx-auto">
+                        Relax in our serene treatment rooms while our experts work their magic with premium products.
+                    </p>
+                </div>
+
+                <div class="text-center group">
+                    <div class="relative inline-flex items-center justify-center w-20 h-20 rounded-full bg-white dark:bg-[#111] border-2 border-salon-rose/30 shadow-xl mb-6 group-hover:border-salon-rose transition-all duration-500 group-hover:scale-110">
+                        <span class="text-2xl font-serif font-bold step-number">04</span>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-dark-gray dark:text-white mb-3">Aftercare</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed max-w-xs mx-auto">
+                        We send you home with personalised aftercare tips and product recommendations to maintain your glow.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 5: TESTIMONIALS ========== -->
+    <section class="py-24 lg:py-32 relative overflow-hidden bg-gradient-to-br from-salon-rose/5 via-transparent to-salon-plum/5 dark:from-salon-rose/10 dark:via-transparent">
+        <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-salon-rose/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 lg:mb-20">
+                <div class="inline-block px-4 py-1 rounded-full bg-salon-rose/10 border border-salon-rose/20 mb-6">
+                    <span class="text-salon-rose text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold">Testimonials</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-dark-gray dark:text-white mb-6 leading-tight">
+                    Words from Our <span class="italic font-light text-salon-rose">Parlour Family</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-salon-rose to-transparent mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                <div class="bg-white dark:bg-[#111] rounded-[2rem] p-8 border border-gray-100 dark:border-white/10 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex gap-1 mb-4">
+                            <i class="fas fa-star text-salon-rose text-sm"></i>
+                            <i class="fas fa-star text-salon-rose text-sm"></i>
+                            <i class="fas fa-star text-salon-rose text-sm"></i>
+                            <i class="fas fa-star text-salon-rose text-sm"></i>
+                            <i class="fas fa-star text-salon-rose text-sm"></i>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed italic mb-6">"The hydra-facial completely transformed my skin. I've struggled with dullness for years, and after just three sessions, I have a natural glow I never thought possible. Absolutely worth it."</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-2">
+                        <div class="w-10 h-10 rounded-full bg-salon-rose/20 flex items-center justify-center text-salon-rose text-xs font-bold shrink-0">PT</div>
+                        <div>
+                            <p class="text-sm font-bold text-dark-gray dark:text-white">Priya T.</p>
+                            <p class="text-[9px] uppercase tracking-widest text-gray-400">Facial Client</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-[#111] rounded-[2rem] p-8 border border-gray-100 dark:border-white/10 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex gap-1 mb-4">
+                            <i class="fas fa-star text-salon-rose text-sm"></i>
+                            <i class="fas fa-star text-salon-rose text-sm"></i>
+                            <i class="fas fa-star text-salon-rose text-sm"></i>
+                            <i class="fas fa-star text-salon-rose text-sm"></i>
+                            <i class="fas fa-star text-salon-rose text-sm"></i>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed italic mb-6">"I booked the complete bridal package and it was worth every penny. From the pre-bridal facials to the day-of makeup — I felt like a queen. My photos are breathtaking. Thank you, Glamora!"</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-2">
+                        <div class="w-10 h-10 rounded-full bg-salon-rose/20 flex items-center justify-center text-salon-rose text-xs font-bold shrink-0">AR</div>
+                        <div>
+                            <p class="text-sm font-bold text-dark-gray dark:text-white">Ananya R.</p>
+                            <p class="text-[9px] uppercase tracking-widest text-gray-400">Bride</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-[#111] rounded-[2rem] p-8 border border-gray-100 dark:border-white/10 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex gap-1 mb-4">
+                            <i class="fas fa-star text-salon-rose text-sm"></i>
+                            <i class="fas fa-star text-salon-rose text-sm"></i>
+                            <i class="fas fa-star text-salon-rose text-sm"></i>
+                            <i class="fas fa-star text-salon-rose text-sm"></i>
+                            <i class="fas fa-star text-salon-rose text-sm"></i>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed italic mb-6">"The threading here is unmatched — painless, precise, and perfectly shaped every single time. I've been coming here for two years and I've never had a bad experience."</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-2">
+                        <div class="w-10 h-10 rounded-full bg-salon-plum/20 flex items-center justify-center text-salon-plum dark:text-salon-rose text-xs font-bold shrink-0">MG</div>
+                        <div>
+                            <p class="text-sm font-bold text-dark-gray dark:text-white">Meera G.</p>
+                            <p class="text-[9px] uppercase tracking-widest text-gray-400">Loyal Client</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 6: CTA / OFFER ========== -->
+    <section class="py-24 lg:py-40 bg-white dark:bg-dark-gray transition-colors relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-salon-rose/5 to-transparent pointer-events-none"></div>
+
+        <div class="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="relative rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-salon-plum to-salon-charcoal p-8 md:p-14 text-center shadow-2xl">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-salon-rose/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-salon-rose/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10">
+                    <div class="inline-block px-4 py-1 rounded-full bg-white/10 border border-white/20 mb-6">
+                        <span class="text-salon-rose text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold">Limited Offer</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white mb-6 leading-tight">
+                        First Visit? <span class="italic font-light text-salon-rose">20% Off.</span>
+                    </h2>
+                    <p class="text-gray-300 max-w-xl mx-auto mb-10 text-sm md:text-base leading-relaxed">
+                        New to Glamora Beauty Parlour? Enjoy 20% off your first treatment — facial, threading, waxing, or bridal consultation. Because your first experience should be unforgettable.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="booking.html"
+                            class="bg-salon-rose hover:bg-salon-rose text-white px-10 py-4 rounded-full text-xs uppercase tracking-widest font-bold shadow-xl transition-all duration-300 hover:-translate-y-1">
+                            Claim Offer
+                        </a>
+                        <a href="pricing.html"
+                            class="border border-white/30 hover:border-salon-rose hover:text-salon-rose text-white px-10 py-4 rounded-full text-xs uppercase tracking-widest font-bold transition-all duration-300">
+                            View Pricing
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#050505] text-white pt-24 pb-8 relative overflow-hidden border-t border-white/10">
+        <div
+            class="absolute bottom-0 left-0 w-full flex justify-center pointer-events-none opacity-[0.03] translate-y-1/4 select-none">
+            <h2 class="font-serif font-black text-[15vw] whitespace-nowrap">Glamora</h2>
+        </div>
+        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-12 mb-20">
+                <div class="lg:col-span-5">
+                    <a href="index.html" class="flex items-center gap-3 group mb-8"><span class="text-2xl md:text-3xl font-serif font-bold text-salon-rose tracking-wide transition-colors"><span class="italic">Glamora</span></span></a>
+                    <div class="flex gap-4 mb-8">
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:border-salon-rose hover:text-salon-rose transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:border-salon-rose hover:text-salon-rose transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:border-salon-rose hover:text-salon-rose transition"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:border-salon-rose hover:text-salon-rose transition"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <p class="text-gray-400 text-sm mt-6 max-w-md leading-relaxed">Glamora Beauty Parlour — expert facials, threading, waxing, bridal packages, and wellness therapies. Family-owned since 2010.</p>
+                </div>
+                <div class="lg:col-span-3">
+                    <h4 class="text-[10px] font-bold uppercase tracking-[0.2em] mb-8 text-gray-400">Explore</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="services.html" class="hover:text-salon-rose transition">Treatments</a></li>
+                        <li><a href="gallery.html" class="hover:text-salon-rose transition">Transformations</a></li>
+                        <li><a href="team.html" class="hover:text-salon-rose transition">Our Experts</a></li>
+                        <li><a href="pricing.html" class="hover:text-salon-rose transition">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="lg:col-span-4">
+                    <h4 class="text-[10px] font-bold uppercase tracking-[0.2em] mb-8 text-gray-400">Visit Us</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-envelope text-salon-rose shrink-0"></i>
+                            <a href="mailto:hello@glamora.com" class="text-salon-rose hover:text-white transition">hello@glamora.com</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-salon-rose shrink-0"></i>
+                            <a href="tel:+14242697880" class="hover:text-salon-rose transition">+1 (424) 269-7880</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-salon-rose shrink-0"></i>
+                            <span>Los Angeles, CA — Walk-ins Welcome</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-clock text-salon-rose shrink-0"></i>
+                            <span>Mon–Sat: 9AM – 8PM · Sun: 10AM – 6PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-[10px] uppercase tracking-widest">© 2026 Glamora Beauty Parlour. All rights reserved.</p>
+                <div class="flex gap-8 text-[10px] text-gray-500 uppercase tracking-widest"><a href="#" class="hover:text-salon-rose transition">Privacy</a><a href="#" class="hover:text-salon-rose transition">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const themeToggle = document.getElementById('theme-toggle'), mobileTheme = document.getElementById('mobile-theme-toggle'), html = document.documentElement;
+            function toggleTheme() { html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); }
+            if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+            if (mobileTheme) mobileTheme.addEventListener('click', toggleTheme);
+            if (localStorage.getItem('theme') === 'light') html.classList.remove('dark'); else html.classList.add('dark');
+
+            const rtlBtn = document.getElementById('rtl-toggle'), mobileRtl = document.getElementById('mobile-rtl-toggle');
+            function toggleRTL() { if (html.getAttribute('dir') === 'rtl') html.removeAttribute('dir'); else html.setAttribute('dir', 'rtl'); localStorage.setItem('direction', html.getAttribute('dir') || 'ltr'); }
+            if (rtlBtn) rtlBtn.addEventListener('click', toggleRTL);
+            if (mobileRtl) mobileRtl.addEventListener('click', toggleRTL);
+            if (localStorage.getItem('direction') === 'rtl') html.setAttribute('dir', 'rtl');
+
+            const menuBtn = document.getElementById('mobile-menu-button'), mobileMenu = document.getElementById('mobile-menu'), menuIcon = document.getElementById('menu-icon'), closeIcon = document.getElementById('close-icon'), body = document.body;
+            function closeMobileMenu() { if (mobileMenu && !mobileMenu.classList.contains('hidden')) { mobileMenu.classList.add('hidden'); if (menuIcon && closeIcon) { menuIcon.classList.remove('hidden'); closeIcon.classList.add('hidden'); } body.classList.remove('menu-open'); body.style.overflow = ''; } }
+            function openMobileMenu() { if (mobileMenu && mobileMenu.classList.contains('hidden')) { mobileMenu.classList.remove('hidden'); if (menuIcon && closeIcon) { menuIcon.classList.add('hidden'); closeIcon.classList.remove('hidden'); } body.classList.add('menu-open'); body.style.overflow = 'hidden'; } }
+            if (menuBtn && mobileMenu) { menuBtn.addEventListener('click', (e) => { e.stopPropagation(); mobileMenu.classList.contains('hidden') ? openMobileMenu() : closeMobileMenu(); }); document.querySelectorAll('#mobile-menu a').forEach(link => link.addEventListener('click', closeMobileMenu)); window.addEventListener('resize', () => { if (window.innerWidth >= 1280 && !mobileMenu.classList.contains('hidden')) closeMobileMenu(); }); }
+
+            // Mobile home dropdown
+            const homeBtn = document.getElementById('mobile-home-dropdown-btn');
+            const homeSub = document.getElementById('mobile-home-submenu');
+            const homeIcon = document.getElementById('mobile-home-icon');
+            if (homeBtn && homeSub) {
+                homeBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    homeSub.classList.toggle('hidden');
+                    if (homeIcon) homeIcon.classList.toggle('rotate');
+                });
+            }
+
+            // Before/After slider interaction
+            const beforeAfter = document.querySelector('.before-after');
+            if (beforeAfter) {
+                const handle = beforeAfter.querySelector('.handle');
+                const after = beforeAfter.querySelector('.after');
+                const divider = beforeAfter.querySelector('.divider');
+                let isDragging = false;
+
+                function moveSlider(x) {
+                    const rect = beforeAfter.getBoundingClientRect();
+                    let percent = ((x - rect.left) / rect.width) * 100;
+                    percent = Math.max(5, Math.min(95, percent));
+                    after.style.clipPath = `polygon(${percent}% 0, 100% 0, 100% 100%, ${percent}% 100%)`;
+                    divider.style.left = percent + '%';
+                    handle.style.left = percent + '%';
+                }
+
+                handle.addEventListener('mousedown', () => isDragging = true);
+                window.addEventListener('mouseup', () => isDragging = false);
+                beforeAfter.addEventListener('mousemove', (e) => { if (isDragging) moveSlider(e.clientX); });
+                handle.addEventListener('touchstart', () => isDragging = true);
+                window.addEventListener('touchend', () => isDragging = false);
+                beforeAfter.addEventListener('touchmove', (e) => { if (isDragging) moveSlider(e.touches[0].clientX); });
+            }
+
+            // Reveal on scroll
+            const revealElements = document.querySelectorAll('.service-card-hover, .group');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => { observer.observe(el); });
+        })();
+    </script>
+</body>
+
+</html>

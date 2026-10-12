@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Contact Us | Glamora — Premium Salon &amp; Beauty Parlour</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+   <link rel="icon" href="assests/fav.png" type="image/jpeg">
+    <meta name="description"
+        content="Contact Glamora — Premium salon &amp; beauty parlour in Los Angeles. Book appointments, find our location, view business hours, and get in touch.">
+
+    <!-- Tailwind CSS CDN -->
+      <script src="tailwind.js"></script>
+
+    <!-- Font Awesome + Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'salon-rose': '#C9737E',
+                        'salon-plum': '#4A2545',
+                        'salon-cream': '#FBF7F2',
+                        'salon-blush': '#F5E1DE',
+                        'salon-gold': '#C9A227',
+                        'salon-charcoal': '#2B2226',
+                        'salon-sage': '#8FA88F',
+                        'dark-gray': '#111111',
+                        'warm-gray': '#FDF9F2'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Jost"', 'sans-serif'],
+                    },
+                    letterSpacing: { 'widest-xl': '0.3em' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        [dir="rtl"] { direction: rtl; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeInUp 1.2s ease-out forwards; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.02); }
+        }
+        .animate-float { animation: float 8s ease-in-out infinite; }
+
+        @keyframes float-badge {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+        .float-badge { animation: float-badge 6s ease-in-out infinite; }
+        .float-badge-delay { animation: float-badge 6s ease-in-out 2s infinite; }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.9); opacity: 0.6; }
+            70% { transform: scale(1.3); opacity: 0; }
+            100% { transform: scale(1.3); opacity: 0; }
+        }
+        .pulse-ring::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: #C9737E;
+            animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+            z-index: -1;
+        }
+
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { overflow-x: hidden; }
+
+        #mobile-menu {
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
+            transition: all 0.3s ease;
+            transform: translateZ(0);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .mobile-dropdown-icon { transition: transform 0.3s ease; }
+        .mobile-dropdown-icon.rotate { transform: rotate(180deg); }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .bg-grain {
+            background-image: radial-gradient(rgba(74, 37, 69, 0.03) 1.5px, transparent 1.5px);
+            background-size: 28px 28px;
+        }
+
+        /* Dark mode overrides */
+        .dark .dark\:text-white { color: #ffffff !important; }
+        .dark .dark\:text-gray-200 { color: #e5e5e5 !important; }
+        .dark .dark\:text-gray-300 { color: #d1d1d1 !important; }
+        .dark .dark\:text-gray-400 { color: #a3a3a3 !important; }
+        .dark p, .dark li, .dark span:not(.text-salon-gold):not(.text-salon-rose):not(.text-salon-sage), .dark .text-gray-600 { color: #cbd5e1 !important; }
+        .dark h1, .dark h2, .dark h3, .dark h4, .dark .font-serif { color: #ffffff !important; }
+        .dark .bg-white\/80, .dark .bg-white\/95 { background-color: #0a0a0a !important; }
+        .dark .border-gray-200 { border-color: rgba(255, 255, 255, 0.1) !important; }
+        .dark .bg-gray-50 { background-color: #1a1a1a !important; }
+        .dark .hover\:bg-gray-100:hover { background-color: #2a2a2a !important; }
+        .dark .text-dark-gray { color: #ffffff !important; }
+        .dark .bg-warm-gray { background-color: #0a0a0a !important; }
+        .dark .bg-white { background-color: #0f0f0f !important; }
+        .dark input[type="date"]::-webkit-calendar-picker-indicator,
+        .dark input[type="time"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            opacity: 0.6;
+        }
+
+        @media (max-width: 1280px) { .nav-menu-container { display: none; } }
+        body.menu-open { overflow: hidden; position: fixed; width: 100%; height: 100%; }
+        button:active { transform: scale(0.97); }
+
+        .salon-glow {
+            box-shadow: 0 0 40px rgba(201, 115, 126, 0.15), 0 0 80px rgba(201, 115, 126, 0.05);
+        }
+        .dark .salon-glow {
+            box-shadow: 0 0 40px rgba(201, 115, 126, 0.25), 0 0 80px rgba(201, 115, 126, 0.1);
+        }
+
+        /* Patterns */
+        .pattern-dots {
+            background-image: radial-gradient(#C9737E 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.08;
+        }
+        .pattern-grid {
+            background-image:
+                linear-gradient(rgba(201, 115, 126, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201, 115, 126, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Contact card */
+        .contact-card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(201, 115, 126, 0.12);
+            padding: 1.75rem;
+            transition: all 0.4s ease;
+            height: 100%;
+        }
+        .dark .contact-card {
+            background: #0f0f0f;
+            border-color: rgba(201, 115, 126, 0.2);
+        }
+        .contact-card:hover {
+            transform: translateY(-6px);
+            border-color: #C9737E;
+            box-shadow: 0 20px 40px -15px rgba(201, 115, 126, 0.3);
+        }
+
+        /* Form inputs */
+        .form-input {
+            width: 100%;
+            padding: 0.9rem 1.1rem;
+            border-radius: 0.875rem;
+            border: 1px solid rgba(201, 115, 126, 0.2);
+            background: #ffffff;
+            color: #2B2226;
+            font-size: 0.875rem;
+            outline: none;
+            transition: all 0.25s ease;
+            font-family: 'Jost', sans-serif;
+        }
+        .dark .form-input {
+            background: #0f0f0f;
+            border-color: rgba(201, 115, 126, 0.3);
+            color: #F5EFE4;
+        }
+        .form-input:focus {
+            border-color: #C9737E;
+            box-shadow: 0 0 0 4px rgba(201, 115, 126, 0.12);
+        }
+        .form-input::placeholder {
+            color: #A8A29E;
+        }
+
+        /* Business hours highlight */
+        .hours-today {
+            background: linear-gradient(135deg, #C9737E, #4A2545);
+            color: white;
+            border-radius: 0.75rem;
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px -6px rgba(201, 115, 126, 0.5);
+        }
+
+        /* Map overlay */
+        .map-wrapper {
+            position: relative;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 30px 60px -20px rgba(74, 37, 69, 0.3);
+        }
+        .map-wrapper iframe {
+            display: block;
+            width: 100%;
+            height: 480px;
+            border: 0;
+            filter: grayscale(20%) contrast(1.05);
+            transition: filter 0.4s ease;
+        }
+        .map-wrapper:hover iframe {
+            filter: grayscale(0%) contrast(1.05);
+        }
+        .dark .map-wrapper iframe {
+            filter: grayscale(60%) invert(90%) contrast(1.1) hue-rotate(180deg);
+        }
+        .dark .map-wrapper:hover iframe {
+            filter: grayscale(40%) invert(90%) contrast(1.1) hue-rotate(180deg);
+        }
+
+        /* Social icon button */
+        .social-btn {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(201, 115, 126, 0.1);
+            color: #C9737E;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(201, 115, 126, 0.2);
+        }
+        .social-btn:hover {
+            background: linear-gradient(135deg, #C9737E, #4A2545);
+            color: white;
+            transform: translateY(-4px) scale(1.05);
+            border-color: transparent;
+            box-shadow: 0 12px 24px -8px rgba(201, 115, 126, 0.6);
+        }
+
+        /* Quick info pill */
+        .info-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            background: rgba(201, 115, 126, 0.08);
+            border: 1px solid rgba(201, 115, 126, 0.2);
+            color: #C9737E;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-weight: 600;
+        }
+        .dark .info-pill {
+            background: rgba(201, 115, 126, 0.15);
+            color: #E09EA6;
+        }
+    </style>
+</head>
+
+<body
+    class="font-sans text-gray-800 antialiased transition-colors duration-300 bg-warm-gray dark:bg-dark-gray dark:text-gray-100 bg-grain">
+
+    <!-- HEADER -->
+    <nav
+        class="bg-white/95 dark:bg-[#0a0a0a]/95 backdrop-blur-xl fixed w-full top-0 z-50 border-b border-gray-200/50 dark:border-white/10 transition-all duration-500 shadow-lg">
+        <div class="max-w-[1200px] mx-auto nav-container px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="flex items-center gap-3 group">
+                        <div class="flex flex-col">
+                            <span class="text-2xl md:text-3xl font-serif font-bold text-salon-rose tracking-wide transition-colors"><span class="italic">Glamora</span></span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden xl:flex items-center justify-center flex-1 nav-menu-container mx-4">
+                    <div
+                        class="flex items-center gap-1 lg:gap-1 bg-gray-50/50 dark:bg-white/5 p-1.5 rounded-full border border-gray-100 dark:border-white/5">
+                        <div class="relative group">
+                            <button
+                                class="text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium transition px-3 py-2 rounded-full flex items-center gap-1 hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">
+                                <span>Home</span>
+                                <i class="fas fa-chevron-down text-[8px] ms-0.5"></i>
+                            </button>
+                            <div
+                                class="absolute start-0 mt-3 w-40 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-white/10 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                                <a href="index.html"
+                                    class="block px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest transition">Home 1</a>
+                                <a href="home2.html"
+                                    class="block px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest transition">Home 2</a>
+                            </div>
+                        </div>
+                        <a href="about.html"
+                            class="nav-link text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium px-3 py-2 rounded-full hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">About</a>
+                        <a href="services.html"
+                            class="nav-link text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium px-3 py-2 rounded-full hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">Services</a>
+                        <a href="gallery.html"
+                            class="nav-link text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium px-3 py-2 rounded-full hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">Gallery</a>
+                        <a href="hair.html"
+                            class="nav-link text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium px-3 py-2 rounded-full hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">Hair</a>
+                        <a href="pricing.html"
+                            class="nav-link text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium px-3 py-2 rounded-full hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">Pricing</a>
+                        <a href="skin-care.html"
+                            class="nav-link text-gray-600 dark:text-gray-300 hover:text-salon-rose dark:hover:text-salon-rose font-medium px-3 py-2 rounded-full hover:bg-white/50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest">Skin Care</a>
+                        <a href="contact.html"
+                            class="nav-link bg-white dark:bg-[#1a1a1a] shadow-sm text-salon-rose dark:text-salon-rose font-bold transition px-3 py-2 rounded-full text-[10px] uppercase tracking-widest">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Right side actions -->
+                <div class="hidden xl:flex items-center gap-2">
+                    <button id="rtl-toggle" class="w-9 h-9 md:w-10 md:h-10 rounded-full border border-gray-200 dark:border-white/10 flex items-center justify-center hover:border-salon-rose transition-all"><span class="text-[9px] font-black text-dark-gray dark:text-white">RTL</span></button>
+                    <button id="theme-toggle" class="w-9 h-9 md:w-10 md:h-10 rounded-full border border-gray-200 dark:border-white/10 flex items-center justify-center hover:border-salon-rose transition-all"><i class="fas fa-moon dark:hidden text-xs text-dark-gray dark:text-white"></i><i class="fas fa-sun hidden dark:inline text-xs text-dark-gray dark:text-white"></i></button>
+                    <a href="#enquiry"
+                        class="bg-salon-rose hover:bg-salon-plum text-white px-5 py-2.5 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-lg hover:-translate-y-0.5 transition duration-300">Book
+                        Now</a>
+                </div>
+
+                <div class="xl:hidden flex items-center gap-2">
+                    <button id="mobile-menu-button"
+                        class="text-dark-gray dark:text-white p-2 focus:outline-none active:scale-95 transition hover:text-salon-rose">
+                        <i id="menu-icon" class="fas fa-bars text-lg"></i>
+                        <i id="close-icon" class="fas fa-times text-lg hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden xl:hidden bg-white dark:bg-[#0a0a0a] border-t border-gray-200 dark:border-white/10 absolute w-full shadow-2xl z-50"
+            style="top: 64px;">
+            <div class="px-5 py-5 pb-8 space-y-1 max-h-[calc(100vh-64px)] overflow-y-auto">
+                <div class="w-full">
+                    <button id="mobile-home-dropdown-btn"
+                        class="w-full flex justify-between items-center px-4 py-3.5 text-salon-rose bg-gray-50/80 dark:bg-white/5 rounded-xl text-sm font-bold tracking-wider uppercase">
+                        <span>Home</span>
+                        <i id="mobile-home-icon"
+                            class="fas fa-chevron-down text-[10px] transition-transform duration-300"></i>
+                    </button>
+                    <div id="mobile-home-submenu"
+                        class="hidden pl-4 space-y-1 mt-1 bg-gray-50/50 dark:bg-white/5 rounded-xl py-2">
+                        <a href="index.html"
+                            class="block px-4 py-3 text-salon-rose font-bold bg-gray-50 dark:bg-white/5 text-[10px] uppercase tracking-widest transition">Home 1</a>
+                        <a href="home2.html"
+                            class="block px-4 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 text-[10px] uppercase tracking-widest transition">Home 2</a>
+                    </div>
+                </div>
+                <a href="about.html"
+                    class="block px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">About</a>
+                <a href="services.html"
+                    class="block px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">Services</a>
+                <a href="gallery.html"
+                    class="block px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">Gallery</a>
+                <a href="hair.html"
+                    class="block px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">Hair</a>
+                <a href="pricing.html"
+                    class="block px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">Pricing</a>
+                <a href="skin-care.html"
+                    class="block px-4 py-3.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/10 rounded-xl text-sm font-medium uppercase transition">Skin Care</a>
+                <a href="contact.html"
+                    class="block px-4 py-3.5 text-salon-rose bg-gray-50 dark:bg-white/5 rounded-xl text-sm font-bold uppercase transition">Contact</a>
+
+                <div class="pt-5 mt-5 border-t border-gray-200 dark:border-white/10">
+                    <div class="flex items-center justify-between gap-4 mb-4">
+                        <button id="mobile-rtl-toggle" class="flex-1 py-3 rounded-xl border border-gray-200 dark:border-white/10 flex items-center justify-center hover:border-salon-rose transition-all">
+                            <span class="text-[10px] font-black text-dark-gray dark:text-white">RTL MODE</span>
+                        </button>
+                        <button id="mobile-theme-toggle" class="flex-1 py-3 rounded-xl border border-gray-200 dark:border-white/10 flex items-center justify-center hover:border-salon-rose transition-all">
+                            <span class="text-[10px] font-black text-dark-gray dark:text-white mr-2">THEME</span>
+                            <i class="fas fa-moon dark:hidden text-xs text-dark-gray dark:text-white"></i>
+                            <i class="fas fa-sun hidden dark:inline text-xs text-dark-gray dark:text-white"></i>
+                        </button>
+                    </div>
+                    <a href="#enquiry"
+                        class="block mt-4 bg-salon-rose text-white text-center px-4 py-4 rounded-xl text-sm font-black uppercase tracking-widest shadow-lg hover:bg-salon-plum transition">Book
+                        Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================ SECTION 1: HERO ============================ -->
+    <section class="relative min-h-[85vh] flex items-center py-28 lg:py-36 overflow-hidden bg-white dark:bg-dark-gray">
+        <div class="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-salon-rose/5 to-transparent pointer-events-none"></div>
+        <div class="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-salon-plum/5 rounded-full blur-[100px] pointer-events-none dark:bg-salon-rose/5"></div>
+        <div class="absolute top-1/3 right-1/4 w-72 h-72 bg-salon-rose/5 rounded-full blur-3xl pointer-events-none float-badge"></div>
+        <div class="absolute bottom-1/4 left-1/3 w-56 h-56 bg-salon-plum/5 rounded-full blur-3xl pointer-events-none float-badge-delay"></div>
+
+        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                <div class="flex-1 text-left animate-fade-in opacity-0" style="animation-delay: 0.2s;">
+                    <span class="text-salon-rose text-[10px] sm:text-xs uppercase tracking-[0.3em] font-bold mb-6 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-salon-rose animate-pulse inline-block"></span> GET IN TOUCH · WE'RE HERE FOR YOU
+                    </span>
+                    <h1 class="text-5xl sm:text-6xl md:text-7xl font-sans font-black text-dark-gray dark:text-white leading-[1.1] mb-8 tracking-tight">
+                        Let's Talk <br>
+                        <span class="font-serif italic font-light text-salon-rose">Beauty.</span>
+                    </h1>
+                    <p class="text-gray-600 dark:text-gray-300 max-w-lg text-base md:text-lg font-light mb-10 leading-relaxed">
+                        Have a question, need a consultation, or ready to book your next appointment? Our team is just a call, message, or visit away.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#enquiry"
+                            class="bg-salon-rose hover:bg-salon-plum text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest font-bold shadow-xl transition-all duration-300 hover:-translate-y-1">
+                            Send Enquiry
+                        </a>
+                        <a href="tel:+14242697880"
+                            class="border border-gray-300 dark:border-white/20 hover:border-salon-rose hover:text-salon-rose text-dark-gray dark:text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest font-bold transition-all duration-300 inline-flex items-center gap-2">
+                            <i class="fas fa-phone"></i> Call Now
+                        </a>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-6 mt-12 text-gray-500 dark:text-gray-400">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-clock text-salon-rose text-sm"></i>
+                            <span class="text-[10px] uppercase tracking-widest font-bold">Open 7 Days a Week</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-bolt text-salon-rose text-sm"></i>
+                            <span class="text-[10px] uppercase tracking-widest font-bold">Quick Response</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-comments text-salon-rose text-sm"></i>
+                            <span class="text-[10px] uppercase tracking-widest font-bold">Free Consultations</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-1 relative animate-fade-in opacity-0" style="animation-delay: 0.4s;">
+                    <div class="relative group">
+                        <div class="absolute -inset-6 bg-salon-rose/15 rounded-[3rem] blur-3xl group-hover:bg-salon-rose/25 transition duration-700"></div>
+                        <div class="relative flex items-center justify-center">
+                            <div class="relative rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100 dark:border-white/10 aspect-square w-full max-w-md salon-glow">
+                                <img src="assests/gallery3.jpg" alt="Contact Glamora Salon"
+                                    class="w-full h-full object-cover transform group-hover:scale-105 transition duration-1000">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================ SECTION 2: CONCIERGE & ASSISTANCE ============================ -->
+    <section class="py-24 lg:py-32 bg-warm-gray dark:bg-[#050505] transition-colors relative overflow-hidden">
+        <div class="absolute inset-0 pattern-dots pointer-events-none"></div>
+
+        <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 lg:mb-20">
+                <div class="inline-block px-4 py-1 rounded-full bg-salon-rose/10 border border-salon-rose/20 mb-6">
+                    <span class="text-salon-rose text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold">Concierge &amp; Enquiries</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-dark-gray dark:text-white mb-6">
+                    How May We <span class="italic font-light text-salon-rose">Assist You?</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-salon-rose to-transparent mx-auto"></div>
+                <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mt-6 text-sm md:text-base">
+                    Choose your preferred channel for bespoke bookings, bridal appointments, press enquiries, or direct client care.
+                </p>
+            </div>
+
+            <!-- 4 Distinct Dedicated Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-stretch">
+                <!-- Card 1: Immediate Booking -->
+                <div class="contact-card flex flex-col justify-between h-full">
+                    <div class="flex-1">
+                        <div class="w-14 h-14 rounded-2xl bg-salon-rose/10 flex items-center justify-center mb-6">
+                            <i class="fas fa-phone text-salon-rose text-xl"></i>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest text-salon-rose font-bold block mb-1">Direct Reception</span>
+                        <h3 class="font-serif font-bold text-2xl text-dark-gray dark:text-white mb-3 min-h-[2rem] flex items-center">Appointments</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-6 min-h-[3.5rem] flex items-start">
+                            Connect with front-desk staff for immediate schedule verification, changes, or same-day openings.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-5 border-t border-gray-100 dark:border-white/5">
+                        <a href="tel:+14242697880" class="font-serif font-bold text-salon-rose hover:text-salon-plum transition text-base lg:text-lg block min-h-[1.75rem] flex items-center truncate">
+                            +1 (424) 269-7880
+                        </a>
+                        <span class="text-[10px] text-gray-400 uppercase tracking-wider block mt-1 min-h-[1.25rem] flex items-center truncate">Daily 9 AM – 9 PM</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: WhatsApp Concierge -->
+                <div class="contact-card flex flex-col justify-between h-full">
+                    <div class="flex-1">
+                        <div class="w-14 h-14 rounded-2xl bg-[#25D366]/10 flex items-center justify-center mb-6">
+                            <i class="fab fa-whatsapp text-[#25D366] text-2xl"></i>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest text-salon-rose font-bold block mb-1">Instant Messaging</span>
+                        <h3 class="font-serif font-bold text-2xl text-dark-gray dark:text-white mb-3 min-h-[2rem] flex items-center">WhatsApp Chat</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-6 min-h-[3.5rem] flex items-start">
+                            Share lookbook photos, seek stylist suggestions, or quickly book without needing a phone call.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-5 border-t border-gray-100 dark:border-white/5">
+                        <a href="https://wa.me/14242697880" target="_blank" class="font-serif font-bold text-salon-rose hover:text-salon-plum transition text-base lg:text-lg block min-h-[1.75rem] flex items-center truncate">
+                            Chat with Stylist &rarr;
+                        </a>
+                        <span class="text-[10px] text-gray-400 uppercase tracking-wider block mt-1 min-h-[1.25rem] flex items-center truncate">Avg Reply: 15 Min</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Bridal & Private Events -->
+                <div class="contact-card flex flex-col justify-between h-full">
+                    <div class="flex-1">
+                        <div class="w-14 h-14 rounded-2xl bg-salon-gold/10 flex items-center justify-center mb-6">
+                            <i class="fas fa-crown text-salon-gold text-xl"></i>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest text-salon-rose font-bold block mb-1">Private Coordination</span>
+                        <h3 class="font-serif font-bold text-2xl text-dark-gray dark:text-white mb-3 min-h-[2rem] flex items-center">Bridal &amp; VIP</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-6 min-h-[3.5rem] flex items-start">
+                            Dedicated event managers for weddings, destination glam, private parties, and VIP suites.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-5 border-t border-gray-100 dark:border-white/5">
+                        <a href="mailto:bridal@glamora.com" class="font-serif font-bold text-salon-rose hover:text-salon-plum transition text-base lg:text-lg block min-h-[1.75rem] flex items-center truncate">
+                            bridal@glamora.com
+                        </a>
+                        <span class="text-[10px] text-gray-400 uppercase tracking-wider block mt-1 min-h-[1.25rem] flex items-center truncate">Complimentary VIP</span>
+                    </div>
+                </div>
+
+                <!-- Card 4: Press & Careers -->
+                <div class="contact-card flex flex-col justify-between h-full">
+                    <div class="flex-1">
+                        <div class="w-14 h-14 rounded-2xl bg-salon-plum/10 flex items-center justify-center mb-6">
+                            <i class="fas fa-briefcase text-salon-plum dark:text-salon-rose text-xl"></i>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest text-salon-rose font-bold block mb-1">Collaborations</span>
+                        <h3 class="font-serif font-bold text-2xl text-dark-gray dark:text-white mb-3 min-h-[2rem] flex items-center">Press &amp; Careers</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-6 min-h-[3.5rem] flex items-start">
+                            Editorial features, brand sponsorships, and master stylist recruitment enquiries.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-5 border-t border-gray-100 dark:border-white/5">
+                        <a href="mailto:careers@glamora.com" class="font-serif font-bold text-salon-rose hover:text-salon-plum transition text-base lg:text-lg block min-h-[1.75rem] flex items-center truncate">
+                            talent@glamora.com
+                        </a>
+                        <span class="text-[10px] text-gray-400 uppercase tracking-wider block mt-1 min-h-[1.25rem] flex items-center truncate">Portfolio Submissions</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Row -->
+            <div class="mt-16 text-center">
+                <p class="text-[10px] uppercase tracking-widest text-gray-500 dark:text-gray-400 font-bold mb-5">Connect with our Creative Community</p>
+                <div class="flex justify-center gap-4">
+                    <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#" class="social-btn" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================ SECTION 3: FREQUENTLY ASKED QUESTIONS ============================ -->
+    <section class="py-24 lg:py-32 bg-white dark:bg-dark-gray transition-colors relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-salon-rose/5 rounded-full blur-[130px] pointer-events-none"></div>
+
+        <div class="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <div class="inline-block px-4 py-1 rounded-full bg-salon-rose/10 border border-salon-rose/20 mb-6">
+                    <span class="text-salon-rose text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold">Need Answers?</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-dark-gray dark:text-white mb-6">
+                    Frequently Asked <span class="italic font-light text-salon-rose">Questions</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-salon-rose to-transparent mx-auto"></div>
+                <p class="text-gray-500 dark:text-gray-400 max-w-xl mx-auto mt-6 text-sm md:text-base">
+                    Everything you need to know about preparing for your visit, reservations, and salon guidelines.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                <!-- FAQ 1 -->
+                <div class="bg-warm-gray dark:bg-[#0f0f0f] border border-gray-100 dark:border-white/5 rounded-2xl p-6 md:p-8 flex flex-col h-full">
+                    <div class="flex items-baseline gap-3 mb-3 min-h-[3.25rem]">
+                        <span class="text-salon-rose font-serif font-bold text-lg shrink-0">01.</span>
+                        <h4 class="font-serif font-bold text-dark-gray dark:text-white text-lg leading-snug">Do I need an advance appointment?</h4>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400 text-xs md:text-sm leading-relaxed flex-1">
+                        While we happily welcome walk-ins based on daily chair availability, we strongly recommend booking 24–48 hours ahead to secure your preferred artist and time slot.
+                    </p>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="bg-warm-gray dark:bg-[#0f0f0f] border border-gray-100 dark:border-white/5 rounded-2xl p-6 md:p-8 flex flex-col h-full">
+                    <div class="flex items-baseline gap-3 mb-3 min-h-[3.25rem]">
+                        <span class="text-salon-rose font-serif font-bold text-lg shrink-0">02.</span>
+                        <h4 class="font-serif font-bold text-dark-gray dark:text-white text-lg leading-snug">What is your cancellation policy?</h4>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400 text-xs md:text-sm leading-relaxed flex-1">
+                        We understand plans change. We kindly request at least 24 hours' notice for cancellations or rescheduling without any cancellation fee.
+                    </p>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-warm-gray dark:bg-[#0f0f0f] border border-gray-100 dark:border-white/5 rounded-2xl p-6 md:p-8 flex flex-col h-full">
+                    <div class="flex items-baseline gap-3 mb-3 min-h-[3.25rem]">
+                        <span class="text-salon-rose font-serif font-bold text-lg shrink-0">03.</span>
+                        <h4 class="font-serif font-bold text-dark-gray dark:text-white text-lg leading-snug">Are consultation sessions complimentary?</h4>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400 text-xs md:text-sm leading-relaxed flex-1">
+                        Yes! All bridal, high-lift hair coloring, and advanced facial peel consultations are 100% complimentary prior to beginning any service.
+                    </p>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="bg-warm-gray dark:bg-[#0f0f0f] border border-gray-100 dark:border-white/5 rounded-2xl p-6 md:p-8 flex flex-col h-full">
+                    <div class="flex items-baseline gap-3 mb-3 min-h-[3.25rem]">
+                        <span class="text-salon-rose font-serif font-bold text-lg shrink-0">04.</span>
+                        <h4 class="font-serif font-bold text-dark-gray dark:text-white text-lg leading-snug">Is there parking available on premises?</h4>
+                    </div>
+                    <p class="text-gray-500 dark:text-gray-400 text-xs md:text-sm leading-relaxed flex-1">
+                        Yes, complimentary valet and secure on-site reserved parking is available right behind our 500 Park Avenue salon for all guests.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================ SECTION 4: SALON LOCATION MAP ============================ -->
+    <section class="py-24 lg:py-32 bg-warm-gray dark:bg-[#050505] transition-colors relative overflow-hidden">
+        <div class="absolute inset-0 pattern-grid opacity-60 dark:opacity-20 pointer-events-none"></div>
+
+        <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <div class="inline-block px-4 py-1 rounded-full bg-salon-rose/10 border border-salon-rose/20 mb-6">
+                    <span class="text-salon-rose text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold">Find Us</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-dark-gray dark:text-white mb-6">
+                    Salon <span class="italic font-light text-salon-rose">Location</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-salon-rose to-transparent mx-auto"></div>
+                <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mt-6 text-sm md:text-base">
+                    Visit our flagship salon in the heart of Los Angeles — easily accessible, beautifully designed.
+                </p>
+            </div>
+
+            <!-- Map Wrapper -->
+            <div class="map-wrapper">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.599053505526!2d-118.24404!3d34.05223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2sLos%20Angeles%2C%20CA!5e0!3m2!1sen!2sus!4v1700000000000"
+                    title="Glamora Salon Location Map"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen>
+                </iframe>
+
+                <!-- Floating info card over map -->
+                <div class="absolute bottom-6 left-6 right-6 md:right-auto md:max-w-sm bg-white dark:bg-[#0f0f0f] rounded-2xl p-5 shadow-2xl border border-gray-100 dark:border-white/10 backdrop-blur-md">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-salon-rose flex items-center justify-center shrink-0">
+                            <i class="fas fa-map-marker-alt text-white text-lg"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-[10px] uppercase tracking-widest text-salon-rose font-bold mb-1">Glamora Salon</p>
+                            <p class="font-serif font-bold text-dark-gray dark:text-white text-base leading-snug mb-3">500 Park Avenue, Suite 18<br>Los Angeles, CA 90012</p>
+                            <a href="https://maps.google.com/?q=Los+Angeles+CA" target="_blank" class="inline-flex items-center gap-2 text-salon-rose text-[10px] uppercase tracking-widest font-bold hover:text-salon-plum transition">
+                                Get Directions <i class="fas fa-arrow-right text-[9px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================ SECTION 5: APPOINTMENT ENQUIRY ============================ -->
+    <section id="enquiry" class="py-24 lg:py-32 bg-white dark:bg-dark-gray transition-colors relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-salon-rose/5 rounded-full blur-[130px] pointer-events-none"></div>
+
+        <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+                <!-- Left: Info -->
+                <div class="lg:col-span-5">
+                    <div class="inline-block px-4 py-1 rounded-full bg-salon-rose/10 border border-salon-rose/20 mb-6">
+                        <span class="text-salon-rose text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold">Appointment Enquiry</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-dark-gray dark:text-white mb-6 leading-tight">
+                        Send Us an <span class="italic font-light text-salon-rose">Enquiry</span>
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 text-base md:text-lg mb-8 leading-relaxed">
+                        Fill in the form and our team will get back to you within 2 hours with a personalised response — no pressure, no spam.
+                    </p>
+
+                    <!-- Why contact list -->
+                    <div class="space-y-5 mb-10">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-salon-rose/10 flex items-center justify-center shrink-0">
+                                <i class="fas fa-calendar-check text-salon-rose"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-primary-text text-sm mb-1">Book Appointments</h4>
+                                <p class="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">Reserve your slot with any artist or service.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-salon-sage/10 flex items-center justify-center shrink-0">
+                                <i class="fas fa-question-circle text-salon-sage"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-primary-text text-sm mb-1">Ask About Services</h4>
+                                <p class="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">Not sure what you need? We'll guide you.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-salon-gold/10 flex items-center justify-center shrink-0">
+                                <i class="fas fa-crown text-salon-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-primary-text text-sm mb-1">Bridal Consultations</h4>
+                                <p class="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">Free pre-bridal planning sessions available.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-salon-plum/10 flex items-center justify-center shrink-0">
+                                <i class="fas fa-comments text-salon-plum dark:text-salon-rose"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-primary-text text-sm mb-1">General Enquiries</h4>
+                                <p class="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">Membership, offers, feedback, or partnerships.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick pills -->
+                    <div class="flex flex-wrap gap-3">
+                        <span class="info-pill"><i class="fas fa-bolt"></i> 2-Hour Response</span>
+                        <span class="info-pill"><i class="fas fa-lock"></i> Privacy Guaranteed</span>
+                        <span class="info-pill"><i class="fas fa-gift"></i> Free Consultation</span>
+                    </div>
+                </div>
+
+                <!-- Right: Form -->
+                <div class="lg:col-span-7">
+                    <div class="bg-warm-gray dark:bg-[#0f0f0f] rounded-3xl p-6 md:p-8 border border-gray-100 dark:border-white/5 shadow-xl">
+                        <h3 class="font-serif font-bold text-2xl text-dark-gray dark:text-white mb-2">Appointment Enquiry Form</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mb-8">All fields marked * are required.</p>
+
+                        <form class="space-y-4" onsubmit="event.preventDefault(); alert('Thank you! Your enquiry has been submitted. Our team will contact you shortly.');">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="name" class="block text-[10px] uppercase tracking-widest font-bold text-gray-500 dark:text-gray-400 mb-2">Full Name *</label>
+                                    <input type="text" id="name" name="name" required placeholder="Jane Doe" class="form-input">
+                                </div>
+                                <div>
+                                    <label for="phone" class="block text-[10px] uppercase tracking-widest font-bold text-gray-500 dark:text-gray-400 mb-2">Phone Number *</label>
+                                    <input type="tel" id="phone" name="phone" required placeholder="+1 (555) 000-0000" class="form-input">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="email" class="block text-[10px] uppercase tracking-widest font-bold text-gray-500 dark:text-gray-400 mb-2">Email Address *</label>
+                                    <input type="email" id="email" name="email" required placeholder="jane@example.com" class="form-input">
+                                </div>
+                                <div>
+                                    <label for="service" class="block text-[10px] uppercase tracking-widest font-bold text-gray-500 dark:text-gray-400 mb-2">Service of Interest *</label>
+                                    <select id="service" name="service" required class="form-input appearance-none cursor-pointer">
+                                        <option value="" disabled selected>Select a service</option>
+                                        <option>Hair Styling &amp; Colour</option>
+                                        <option>Haircut &amp; Blowout</option>
+                                        <option>Skin Care &amp; Facial</option>
+                                        <option>Makeup Artistry</option>
+                                        <option>Bridal Services</option>
+                                        <option>Nail Art &amp; Care</option>
+                                        <option>Spa &amp; Massage</option>
+                                        <option>General Enquiry</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="date" class="block text-[10px] uppercase tracking-widest font-bold text-gray-500 dark:text-gray-400 mb-2">Preferred Date</label>
+                                    <input type="date" id="date" name="date" class="form-input">
+                                </div>
+                                <div>
+                                    <label for="time" class="block text-[10px] uppercase tracking-widest font-bold text-gray-500 dark:text-gray-400 mb-2">Preferred Time</label>
+                                    <select id="time" name="time" class="form-input appearance-none cursor-pointer">
+                                        <option value="" disabled selected>Select time</option>
+                                        <option>09:00 AM</option>
+                                        <option>10:00 AM</option>
+                                        <option>11:00 AM</option>
+                                        <option>12:00 PM</option>
+                                        <option>01:00 PM</option>
+                                        <option>02:00 PM</option>
+                                        <option>03:00 PM</option>
+                                        <option>04:00 PM</option>
+                                        <option>05:00 PM</option>
+                                        <option>06:00 PM</option>
+                                        <option>07:00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="message" class="block text-[10px] uppercase tracking-widest font-bold text-gray-500 dark:text-gray-400 mb-2">Additional Notes</label>
+                                <textarea id="message" name="message" rows="4" placeholder="Tell us about your goals, preferences, or special requests..." class="form-input resize-y min-h-[100px]"></textarea>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="privacy" required class="mt-1 w-4 h-4 rounded border-gray-300 dark:border-white/20 text-salon-rose focus:ring-salon-rose accent-[#C9737E]">
+                                <label for="privacy" class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+                                    I agree to be contacted regarding my enquiry and accept the <a href="#" class="text-salon-rose hover:underline">Privacy Policy</a>.
+                                </label>
+                            </div>
+
+                            <div class="pt-2">
+                                <button type="submit" class="bg-salon-rose hover:bg-salon-plum text-white w-full md:w-auto px-10 py-4 rounded-full text-xs uppercase tracking-widest font-bold shadow-xl transition-all duration-300 hover:-translate-y-1 inline-flex items-center justify-center gap-2">
+                                    Send Enquiry <i class="fas fa-paper-plane text-[10px]"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================ SECTION 6: BUSINESS HOURS ============================ -->
+    <section class="py-24 lg:py-32 bg-warm-gray dark:bg-[#050505] transition-colors relative overflow-hidden">
+        <div class="absolute inset-0 pattern-dots pointer-events-none"></div>
+        <div class="absolute top-1/2 right-0 w-[600px] h-[600px] bg-salon-rose/5 rounded-full blur-[130px] pointer-events-none"></div>
+
+        <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <div class="inline-block px-4 py-1 rounded-full bg-salon-rose/10 border border-salon-rose/20 mb-6">
+                    <span class="text-salon-rose text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold">Business Hours</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-dark-gray dark:text-white mb-6">
+                    We're <span class="italic font-light text-salon-rose">Open</span> for You
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-salon-rose to-transparent mx-auto"></div>
+                <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mt-6 text-sm md:text-base">
+                    Seven days a week, walk-ins welcome (booking recommended). Hours may vary on public holidays.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+                <!-- Hours List -->
+                <div class="lg:col-span-7">
+                    <div class="bg-white dark:bg-[#0f0f0f] rounded-3xl p-6 md:p-8 border border-gray-100 dark:border-white/5 shadow-xl">
+                        <div class="space-y-3">
+                            <!-- Monday -->
+                            <div class="flex items-center justify-between p-4 rounded-xl bg-warm-gray dark:bg-[#1a1a1a] transition">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-salon-rose/10 flex items-center justify-center">
+                                        <span class="font-bold text-salon-rose text-xs">M</span>
+                                    </div>
+                                    <span class="font-serif font-bold text-dark-gray dark:text-white">Monday</span>
+                                </div>
+                                <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">9:00 AM — 8:00 PM</span>
+                            </div>
+                            <!-- Tuesday -->
+                            <div class="flex items-center justify-between p-4 rounded-xl bg-warm-gray dark:bg-[#1a1a1a] transition">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-salon-rose/10 flex items-center justify-center">
+                                        <span class="font-bold text-salon-rose text-xs">T</span>
+                                    </div>
+                                    <span class="font-serif font-bold text-dark-gray dark:text-white">Tuesday</span>
+                                </div>
+                                <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">9:00 AM — 8:00 PM</span>
+                            </div>
+                            <!-- Wednesday -->
+                            <div class="flex items-center justify-between p-4 rounded-xl bg-warm-gray dark:bg-[#1a1a1a] transition">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-salon-rose/10 flex items-center justify-center">
+                                        <span class="font-bold text-salon-rose text-xs">W</span>
+                                    </div>
+                                    <span class="font-serif font-bold text-dark-gray dark:text-white">Wednesday</span>
+                                </div>
+                                <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">9:00 AM — 8:00 PM</span>
+                            </div>
+                            <!-- Thursday -->
+                            <div class="flex items-center justify-between p-4 rounded-xl bg-warm-gray dark:bg-[#1a1a1a] transition">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-salon-rose/10 flex items-center justify-center">
+                                        <span class="font-bold text-salon-rose text-xs">T</span>
+                                    </div>
+                                    <span class="font-serif font-bold text-dark-gray dark:text-white">Thursday</span>
+                                </div>
+                                <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">9:00 AM — 9:00 PM</span>
+                            </div>
+                            <!-- Friday -->
+                            <div class="flex items-center justify-between p-4 rounded-xl bg-warm-gray dark:bg-[#1a1a1a] transition">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-salon-rose/10 flex items-center justify-center">
+                                        <span class="font-bold text-salon-rose text-xs">F</span>
+                                    </div>
+                                    <span class="font-serif font-bold text-dark-gray dark:text-white">Friday</span>
+                                </div>
+                                <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">9:00 AM — 9:00 PM</span>
+                            </div>
+                            <!-- Saturday (TODAY - highlighted) -->
+                            <div class="flex items-center justify-between p-4 rounded-xl hours-today">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
+                                        <span class="font-bold text-white text-xs">S</span>
+                                    </div>
+                                    <div>
+                                        <span class="font-serif font-bold text-white block">Saturday</span>
+                                        <span class="text-[9px] uppercase tracking-widest text-white/80 font-bold">Today · Extended Hours</span>
+                                    </div>
+                                </div>
+                                <span class="text-sm text-white font-bold">9:00 AM — 10:00 PM</span>
+                            </div>
+                            <!-- Sunday -->
+                            <div class="flex items-center justify-between p-4 rounded-xl bg-warm-gray dark:bg-[#1a1a1a] transition">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-salon-rose/10 flex items-center justify-center">
+                                        <span class="font-bold text-salon-rose text-xs">S</span>
+                                    </div>
+                                    <span class="font-serif font-bold text-dark-gray dark:text-white">Sunday</span>
+                                </div>
+                                <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">10:00 AM — 7:00 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Side info cards -->
+                <div class="lg:col-span-5 space-y-6">
+                    <!-- Open Now Card -->
+                    <div class="bg-gradient-to-br from-salon-plum to-salon-charcoal dark:from-[#0a0a0a] dark:to-[#111] rounded-3xl p-8 border border-white/5 shadow-xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-40 h-40 bg-salon-rose/20 rounded-full blur-3xl pointer-events-none"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-3 mb-5">
+                                <div class="w-3 h-3 rounded-full bg-salon-sage animate-pulse"></div>
+                                <span class="text-salon-sage text-[10px] uppercase tracking-widest font-bold">We're Open Now</span>
+                            </div>
+                            <h3 class="font-serif font-bold text-2xl text-white mb-2">Walk-ins Welcome</h3>
+                            <p class="text-gray-300 text-sm mb-6 leading-relaxed">
+                                No appointment? No problem. Stop by and our team will fit you in as soon as possible.
+                            </p>
+                            <a href="booking.html" class="inline-flex items-center gap-2 bg-salon-rose hover:bg-white hover:text-salon-plum text-white px-6 py-3 rounded-full text-xs uppercase tracking-widest font-bold transition-all duration-300">
+                                Book Ahead <i class="fas fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Parking & Access info -->
+                    <div class="bg-white dark:bg-[#0f0f0f] rounded-3xl p-8 border border-gray-100 dark:border-white/5 shadow-xl">
+                        <h3 class="font-serif font-bold text-xl text-dark-gray dark:text-white mb-5">Good to Know</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-salon-rose/10 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fas fa-parking text-salon-rose text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-dark-gray dark:text-white mb-0.5">Free On-site Parking</p>
+                                    <p class="text-gray-500 dark:text-gray-400 text-xs">Dedicated parking behind the salon</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-salon-sage/10 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fas fa-wheelchair text-salon-sage text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-dark-gray dark:text-white mb-0.5">Wheelchair Accessible</p>
+                                    <p class="text-gray-500 dark:text-gray-400 text-xs">Ramps and accessible restroom available</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-salon-gold/10 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fas fa-mug-hot text-salon-gold text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-dark-gray dark:text-white mb-0.5">Complimentary Beverages</p>
+                                    <p class="text-gray-500 dark:text-gray-400 text-xs">Coffee, tea, and refreshments on us</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-salon-plum/10 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fas fa-wifi text-salon-plum dark:text-salon-rose text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-dark-gray dark:text-white mb-0.5">Free High-Speed Wi-Fi</p>
+                                    <p class="text-gray-500 dark:text-gray-400 text-xs">Stay connected while you relax</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Holiday note -->
+                    <div class="bg-salon-rose/5 dark:bg-salon-rose/10 border border-salon-rose/20 rounded-3xl p-6">
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-info-circle text-salon-rose text-lg mt-0.5"></i>
+                            <div>
+                                <p class="font-serif font-bold text-dark-gray dark:text-white text-sm mb-1">Holiday Hours</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs leading-relaxed">
+                                    We may have reduced hours on public holidays. Please call ahead or book online to confirm.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================ FINAL CTA ============================ -->
+    <section class="py-20 lg:py-28 bg-white dark:bg-dark-gray relative overflow-hidden">
+        <div class="absolute inset-0 pattern-grid opacity-60 dark:opacity-20 pointer-events-none"></div>
+
+        <div class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="relative bg-salon-plum dark:bg-[#0a0a0a] rounded-3xl p-8 lg:p-16 overflow-hidden border border-white/5">
+                <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-salon-rose/15 rounded-full blur-[120px] pointer-events-none"></div>
+                <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10 text-center lg:text-left">
+                    <div class="max-w-2xl">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-salon-rose/20 border border-salon-rose/30 mb-5">
+                            <span class="w-2 h-2 rounded-full bg-salon-rose animate-pulse"></span>
+                            <span class="text-salon-rose text-[10px] uppercase tracking-[0.3em] font-bold">Ready When You Are</span>
+                        </div>
+                        <h3 class="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-4 leading-tight">
+                            Book Your Glow-Up <span class="italic font-light text-salon-rose">Today</span>
+                        </h3>
+                        <p class="text-gray-300 text-sm md:text-base max-w-xl">
+                            Skip the wait — book your appointment online and get instant confirmation within minutes.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-end shrink-0">
+                        <a href="booking.html"
+                            class="bg-salon-rose hover:bg-white hover:text-salon-plum text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest font-bold shadow-xl transition-all duration-300 hover:-translate-y-1">
+                            Book Appointment
+                        </a>
+                        <a href="services.html"
+                            class="border border-white/20 hover:border-salon-rose hover:text-salon-rose text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest font-bold transition-all duration-300">
+                            View Services
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#050505] text-white pt-24 pb-8 relative overflow-hidden border-t border-white/10">
+        <div class="absolute bottom-0 left-0 w-full flex justify-center pointer-events-none opacity-[0.03] translate-y-1/4 select-none">
+            <h2 class="font-serif font-black text-[15vw] whitespace-nowrap">Glamora</h2>
+        </div>
+        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-12 mb-20">
+                <div class="lg:col-span-5">
+                    <a href="index.html" class="flex items-center gap-3 group mb-8"><span class="text-2xl md:text-3xl font-serif font-bold text-salon-rose tracking-wide transition-colors"><span class="italic">Glamora</span></span></a>
+                    <div class="flex gap-4 mb-8">
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:border-salon-rose hover:text-salon-rose transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:border-salon-rose hover:text-salon-rose transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:border-salon-rose hover:text-salon-rose transition"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:border-salon-rose hover:text-salon-rose transition"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <p class="text-gray-400 text-sm mt-6 max-w-md leading-relaxed">Premium salon &amp; beauty parlour. Expert hair, skin, makeup, nails, and spa treatments. Family-owned since 2010.</p>
+                </div>
+                <div class="lg:col-span-3">
+                    <h4 class="text-[10px] font-bold uppercase tracking-[0.2em] mb-8 text-gray-400">Explore</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="services.html" class="hover:text-salon-rose transition">Services</a></li>
+                        <li><a href="gallery.html" class="hover:text-salon-rose transition">Gallery</a></li>
+                        <li><a href="hair.html" class="hover:text-salon-rose transition">Hair Services</a></li>
+                        <li><a href="skin-care.html" class="hover:text-salon-rose transition">Skin Care</a></li>
+                        <li><a href="pricing.html" class="hover:text-salon-rose transition">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="lg:col-span-4">
+                    <h4 class="text-[10px] font-bold uppercase tracking-[0.2em] mb-8 text-gray-400">Connect</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-envelope text-salon-rose shrink-0"></i>
+                            <a href="mailto:hello@glamora.com" class="text-salon-rose hover:text-white transition">hello@glamora.com</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-salon-rose shrink-0"></i>
+                            <a href="tel:+14242697880" class="hover:text-salon-rose transition">+1 (424) 269-7880</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-salon-rose shrink-0"></i>
+                            <span>500 Park Ave, Suite 18, Los Angeles, CA</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-[10px] uppercase tracking-widest">© 2026 Glamora. All rights reserved.</p>
+                <div class="flex gap-8 text-[10px] text-gray-500 uppercase tracking-widest"><a href="#" class="hover:text-salon-rose transition">Privacy</a><a href="#" class="hover:text-salon-rose transition">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const themeToggle = document.getElementById('theme-toggle'), mobileTheme = document.getElementById('mobile-theme-toggle'), html = document.documentElement;
+            function toggleTheme() { html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); }
+            if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+            if (mobileTheme) mobileTheme.addEventListener('click', toggleTheme);
+            if (localStorage.getItem('theme') === 'light') html.classList.remove('dark'); else html.classList.add('dark');
+
+            const rtlBtn = document.getElementById('rtl-toggle'), mobileRtl = document.getElementById('mobile-rtl-toggle');
+            function toggleRTL() { if (html.getAttribute('dir') === 'rtl') html.removeAttribute('dir'); else html.setAttribute('dir', 'rtl'); localStorage.setItem('direction', html.getAttribute('dir') || 'ltr'); }
+            if (rtlBtn) rtlBtn.addEventListener('click', toggleRTL);
+            if (mobileRtl) mobileRtl.addEventListener('click', toggleRTL);
+            if (localStorage.getItem('direction') === 'rtl') html.setAttribute('dir', 'rtl');
+
+            const menuBtn = document.getElementById('mobile-menu-button'), mobileMenu = document.getElementById('mobile-menu'), menuIcon = document.getElementById('menu-icon'), closeIcon = document.getElementById('close-icon'), body = document.body;
+            function closeMobileMenu() { if (mobileMenu && !mobileMenu.classList.contains('hidden')) { mobileMenu.classList.add('hidden'); if (menuIcon && closeIcon) { menuIcon.classList.remove('hidden'); closeIcon.classList.add('hidden'); } body.classList.remove('menu-open'); body.style.overflow = ''; } }
+            function openMobileMenu() { if (mobileMenu && mobileMenu.classList.contains('hidden')) { mobileMenu.classList.remove('hidden'); if (menuIcon && closeIcon) { menuIcon.classList.add('hidden'); closeIcon.classList.remove('hidden'); } body.classList.add('menu-open'); body.style.overflow = 'hidden'; } }
+            if (menuBtn && mobileMenu) { menuBtn.addEventListener('click', (e) => { e.stopPropagation(); mobileMenu.classList.contains('hidden') ? openMobileMenu() : closeMobileMenu(); }); document.querySelectorAll('#mobile-menu a').forEach(link => link.addEventListener('click', closeMobileMenu)); window.addEventListener('resize', () => { if (window.innerWidth >= 1280 && !mobileMenu.classList.contains('hidden')) closeMobileMenu(); }); }
+
+            const homeBtn = document.getElementById('mobile-home-dropdown-btn');
+            const homeSub = document.getElementById('mobile-home-submenu');
+            const homeIcon = document.getElementById('mobile-home-icon');
+            if (homeBtn && homeSub) {
+                homeBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    homeSub.classList.toggle('hidden');
+                    if (homeIcon) homeIcon.classList.toggle('rotate');
+                });
+            }
+
+            const revealElements = document.querySelectorAll('.contact-card, .group');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => { observer.observe(el); });
+        })();
+    </script>
+</body>
+
+</html>
